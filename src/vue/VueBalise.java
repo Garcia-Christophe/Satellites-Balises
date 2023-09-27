@@ -24,7 +24,16 @@ public class VueBalise extends VueElementMobile {
 
 	@Override
 	public void redessine() {
-		this.setCenter(new Point(this.balise.getCoordonnee().getX(), this.balise.getCoordonnee().getY()));
+		try {
+			int x = (this.balise.getHautDroit().getX() - this.getImage().getWidth(null)) / 2;
+			int y = (this.balise.getBasGauche().getY() - this.getImage().getWidth(null)) / 2;
+			this.setCenter(new Point(x, y));
+		} catch (Exception e) {
+		}
+	}
+
+	public Balise getBalise() {
+		return balise;
 	}
 
 }

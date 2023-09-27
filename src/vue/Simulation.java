@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javax.swing.Timer;
 
@@ -41,36 +42,47 @@ public class Simulation {
 		this.niSpace.openInWindow();
 
 		List<Satellite> listeSatellites = new ArrayList<Satellite>();
-		listeSatellites.add(new Satellite(new Coordonnee(100, 50), Direction.HORIZONTAL));
-		listeSatellites.add(new Satellite(new Coordonnee(650, 100), Direction.HORIZONTAL));
-		listeSatellites.add(new Satellite(new Coordonnee(330, 150), Direction.HORIZONTAL));
-		listeSatellites.add(new Satellite(new Coordonnee(250, 200), Direction.HORIZONTAL));
-		listeSatellites.add(new Satellite(new Coordonnee(850, 250), Direction.HORIZONTAL));
+		listeSatellites.add(new Satellite(null, null));
+		listeSatellites.add(new Satellite(null, null));
+		listeSatellites.add(new Satellite(null, null));
+		listeSatellites.add(new Satellite(null, null));
+		listeSatellites.add(new Satellite(null, null));
 		List<Balise> listeBalises = new ArrayList<Balise>();
-		listeBalises.add(new Balise(new Coordonnee(150, 50), Direction.HORIZONTAL, 100, 324, 728));
-		listeBalises.add(new Balise(new Coordonnee(600, 100), Direction.VERTICAL, 100, 324, 728));
-		listeBalises.add(new Balise(new Coordonnee(280, 150), Direction.HORIZONTAL, 100, 324, 728));
-		listeBalises.add(new Balise(new Coordonnee(750, 200), Direction.VERTICAL, 100, 324, 728));
-		listeBalises.add(new Balise(new Coordonnee(920, 250), Direction.HORIZONTAL, 100, 324, 728));
+		listeBalises.add(new Balise(null, null, Direction.HORIZONTAL, 100, 364, 0));
+		listeBalises.add(new Balise(null, null, Direction.HORIZONTAL, 100, 364, 0));
+		listeBalises.add(new Balise(null, null, Direction.HORIZONTAL, 100, 364, 0));
+		listeBalises.add(new Balise(null, null, Direction.HORIZONTAL, 100, 364, 0));
+		listeBalises.add(new Balise(null, null, Direction.HORIZONTAL, 100, 364, 0));
 		this.air = new Air(1024, 0, 364, 0, listeSatellites);
-		this.eau = new Eau(1024, 0, 728, 364, listeBalises);
+		this.eau = new Eau(1024, 0, 364, 0, listeBalises);
 
 		this.nouveauxEspaces();
 	}
 
 	public void nouveauxEspaces() {
 		this.vueAir = new VueAir(this.air);
-		this.vueEau = new VueEau(this.eau);
+		this.vueEau = new VueEau(this.eau, this.niSpace.getHeight());
 
 		this.niSpace.add(this.vueAir);
 		this.niSpace.add(this.vueEau);
 
 		try {
 			for (Satellite satellite : this.air.getSatellites()) {
-				this.vueAir.add(new VueSatellite(satellite));
+				VueSatellite vueSatellite = new VueSatellite(satellite);
+				int randX = new Random().nextInt(900 - 100) + 100;
+				int randY = new Random().nextInt(180 - 40) + 10;
+				System.out.println(vueSatellite.getImage().getWidth(null) + randX);
+				satellite.setHautDroit(new Coordonnee(vueSatellite.getImage().getWidth(null) + randX, 0 + randY));
+				satellite.setBasGauche(new Coordonnee(0 + randX, vueSatellite.getImage().getHeight(null) + randY));
+				this.vueAir.add(vueSatellite);
 			}
 			for (Balise balise : this.eau.getBalises()) {
-				this.vueEau.add(new VueBalise(balise));
+				VueBalise vueBalise = new VueBalise(balise);
+				int randX = new Random().nextInt(900 - 100) + 100;
+				int randY = new Random().nextInt(300 - 40) + 10;
+				balise.setHautDroit(new Coordonnee(vueBalise.getImage().getWidth(null) + randX, 0 + randY));
+				balise.setBasGauche(new Coordonnee(0 + randX, vueBalise.getImage().getHeight(null) + randY));
+				this.vueEau.add(vueBalise);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -84,7 +96,7 @@ public class Simulation {
 	}
 
 	class GraphicAnimation implements ActionListener {
-		private int graphicAnimationDelay = 1000;
+		private int graphicAnimationDelay = 100;
 
 		boolean sat = false;
 

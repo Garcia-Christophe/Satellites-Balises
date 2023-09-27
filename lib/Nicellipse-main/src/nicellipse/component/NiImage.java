@@ -19,24 +19,30 @@ public class NiImage extends JComponent implements NiBasicComponent {
 	public NiImage(Image image) {
 		this.setImage(image);
 	}
-	
+
 	public NiImage(File path) throws IOException {
 		BufferedImage rawImage = null;
 		rawImage = ImageIO.read(path);
 		this.setImage(rawImage);
 	}
-	
+
+	public Image getImage() {
+		return this.image;
+	}
+
 	public void setImage(Image image) {
 		this.image = image;
 		int width = this.image.getWidth(null);
 		int height = this.image.getHeight(null);
 		this.setSize(width, height);
 	}
-		
+
+	@Override
 	public Shape getClipShape() {
-		return new Rectangle(0,0,this.getWidth(), this.getHeight());
+		return new Rectangle(0, 0, this.getWidth(), this.getHeight());
 	}
 
+	@Override
 	public void paintComponent(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g.create();
 		super.paintComponent(g2d);

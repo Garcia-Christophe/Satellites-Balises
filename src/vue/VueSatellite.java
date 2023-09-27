@@ -24,7 +24,14 @@ public class VueSatellite extends VueElementMobile {
 
 	@Override
 	public void redessine() {
-		this.setCenter(new Point(this.satellite.getCoordonnee().getX(), this.satellite.getCoordonnee().getY()));
+		if (this.satellite.getHautDroit() != null) {
+			int x = (this.satellite.getHautDroit().getX() - this.getImage().getWidth(null)) / 2;
+			int y = (this.satellite.getBasGauche().getY() - this.getImage().getWidth(null)) / 2;
+			try {
+				this.setCenter(new Point(x, y));
+			} catch (Exception e) {
+			}
+		}
 	}
 
 }
