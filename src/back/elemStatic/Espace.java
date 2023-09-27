@@ -9,14 +9,13 @@ public abstract class Espace {
 	
 	private int maxX, minX, maxY, minY;
 	
-	private static List<Balise> balisesPleine;
+	private static List<Balise> balisesPleine = new ArrayList<>();
 
 	public Espace(int maxX, int minX, int maxY, int minY) {
 		this.maxX = maxX;
 		this.minX = minX;
 		this.maxY = maxY;
 		this.minY = minY;
-		this.balisesPleine = new ArrayList<>();
 	}
 
 	public int getMaxX() {

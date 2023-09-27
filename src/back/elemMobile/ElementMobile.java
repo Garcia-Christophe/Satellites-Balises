@@ -1,6 +1,9 @@
 package back.elemMobile;
 
 public abstract class ElementMobile {
+	
+	protected final int tempsAttenteSynchro = 5;
+	
 	protected Coordonnee hautDroit, basGauche;
 	
 	protected Direction direction;

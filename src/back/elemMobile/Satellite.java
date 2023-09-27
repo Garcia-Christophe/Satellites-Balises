@@ -1,6 +1,9 @@
 package back.elemMobile;
 
 public class Satellite extends ElementMobile {
+	private int attenteSynchro;
+	
+	private boolean estSynchro;
 
 	public Satellite(Coordonnee hautDroit, Coordonnee basGauche) {
 		super(hautDroit, basGauche, Direction.HORIZONTAL);
@@ -8,7 +11,14 @@ public class Satellite extends ElementMobile {
 	
 	@Override
 	public void synchronisation() {
-		System.out.println("synchronisation effectué");
+		if (this.attenteSynchro < super.tempsAttenteSynchro) {
+			this.estSynchro = true;
+			this.attenteSynchro++;
+			this.attenteSynchro = 0;
+		} else {
+			System.out.println("synchronisation effectué");
+			this.estSynchro = false;
+		}
 	}
 	
 	public void move(int maxX, int minX) {

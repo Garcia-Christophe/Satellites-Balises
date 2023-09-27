@@ -3,8 +3,6 @@ package back.elemMobile;
 import java.util.Random;
 
 public class Balise extends ElementMobile {
-	
-	private final static int tempsAttenteSynchro = 5;
 
 	private int capacite, stockage, nbDescente, indexDescente, attenteSynchro;
 
@@ -71,7 +69,7 @@ public class Balise extends ElementMobile {
 
 	@Override
 	public void synchronisation() {
-		if (this.attenteSynchro < tempsAttenteSynchro) {
+		if (this.attenteSynchro < super.tempsAttenteSynchro) {
 			this.estSynchro = true;
 			this.attenteSynchro++;
 		} else {
