@@ -1,0 +1,9 @@
+/**
+ * 
+ */
+/**
+ * @author Christophe
+ *
+ */
+module SatellitesBalises {
+}
