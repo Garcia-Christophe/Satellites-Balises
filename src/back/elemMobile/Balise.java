@@ -10,11 +10,12 @@ public class Balise extends ElementMobile {
 
 	public Balise(Coordonnee coordonnee, Direction direction, int capacite, int maxY, int minY) {
 		super(coordonnee, direction);
+		Random rand = new Random();
 		this.capacite = capacite;
 		this.stockage = 0;
 		this.estPleine = false;
 		this.indexDescente = 0;
-		this.nbDescente = (int) Math.random() * (maxY - minY);
+		this.nbDescente = rand.nextInt(maxY - minY);
 	}
 
 	public int getCapacite() {
