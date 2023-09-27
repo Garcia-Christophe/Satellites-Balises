@@ -30,10 +30,16 @@ public class Air extends Espace{
 			satellite.move(getMaxX(), getMinX());
 			
 			List<Balise> baliseNonSynchronise = new ArrayList<>();
+			boolean dejaSynchro = false;
 			for (Balise balise : super.getBalisesPleine()) {
-				if (balise.getCoordonnee().getX() == satellite.getCoordonnee().getX()) {
+				int baliseX = balise.getCoordonnee().getX();
+				int satelliteX = satellite.getCoordonnee().getX();
+				boolean inIntervalSynchro = (baliseX >= (satelliteX - 10)) 
+						&& (baliseX <= (satelliteX + 10));
+				if (inIntervalSynchro && !dejaSynchro) {
 					balise.synchronisation();
-					satellite.synchronisation();					
+					satellite.synchronisation();
+					dejaSynchro = true;
 				} else {
 					baliseNonSynchronise.add(balise);
 				}
