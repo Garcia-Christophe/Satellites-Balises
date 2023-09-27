@@ -2,22 +2,18 @@ package vue;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.util.ArrayList;
-import java.util.List;
+
+import back.elemStatic.Eau;
 
 public class VueEau extends VueEspace {
 
-	private List<VueBalise> vuesBalises;
+	private Eau eau;
 
-	public VueEau(int x, int y, Dimension dimension) {
-		super(x, y, dimension);
+	public VueEau(Eau eau) {
+		super(eau.getMinX(), eau.getMinY(), new Dimension(eau.getMaxX(), eau.getMaxY()));
 		this.setBackground(Color.blue);
 
-		this.vuesBalises = new ArrayList<>();
-	}
-
-	public List<VueBalise> getVuesBalises() {
-		return vuesBalises;
+		this.eau = eau;
 	}
 
 }

@@ -1,17 +1,30 @@
 package vue;
 
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.Timer;
 
+import back.elemMobile.Balise;
+import back.elemMobile.Coordonnee;
+import back.elemMobile.ElementMobile.Direction;
+import back.elemMobile.Satellite;
+import back.elemStatic.Air;
+import back.elemStatic.Eau;
 import nicellipse.component.NiSpace;
 
 public class Simulation {
 
-	private NiSpace space = new NiSpace("Simulation satellites balises", new Dimension(1024, 728));
+	private NiSpace niSpace;
+
+	private Air air;
+
+	private Eau eau;
 
 	private VueAir vueAir;
 
@@ -23,19 +36,47 @@ public class Simulation {
 	}
 
 	public Simulation() {
-		this.space.setDoubleBuffered(true);
-		this.space.openInWindow();
+		this.niSpace = new NiSpace("Simulation satellites balises", new Dimension(1024, 728));
+		this.niSpace.setDoubleBuffered(true);
+		this.niSpace.openInWindow();
+
+		List<Satellite> listeSatellites = new ArrayList<Satellite>();
+		listeSatellites.add(new Satellite(new Coordonnee(100, 50), Direction.HORIZONTAL));
+		listeSatellites.add(new Satellite(new Coordonnee(650, 100), Direction.HORIZONTAL));
+		listeSatellites.add(new Satellite(new Coordonnee(330, 150), Direction.HORIZONTAL));
+		listeSatellites.add(new Satellite(new Coordonnee(250, 200), Direction.HORIZONTAL));
+		listeSatellites.add(new Satellite(new Coordonnee(850, 250), Direction.HORIZONTAL));
+		List<Balise> listeBalises = new ArrayList<Balise>();
+		listeBalises.add(new Balise(new Coordonnee(150, 50), Direction.HORIZONTAL, 100, 324, 728));
+		listeBalises.add(new Balise(new Coordonnee(600, 100), Direction.VERTICAL, 100, 324, 728));
+		listeBalises.add(new Balise(new Coordonnee(280, 150), Direction.HORIZONTAL, 100, 324, 728));
+		listeBalises.add(new Balise(new Coordonnee(750, 200), Direction.VERTICAL, 100, 324, 728));
+		listeBalises.add(new Balise(new Coordonnee(920, 250), Direction.HORIZONTAL, 100, 324, 728));
+		this.air = new Air(1024, 0, 364, 0, listeSatellites);
+		this.eau = new Eau(1024, 0, 728, 364, listeBalises);
 
 		this.nouveauxEspaces();
 	}
 
 	public void nouveauxEspaces() {
-		this.vueAir = new VueAir(0, 0, new Dimension(1024, 364));
-		this.vueEau = new VueEau(0, 364, new Dimension(1024, 364));
+		this.vueAir = new VueAir(this.air);
+		this.vueEau = new VueEau(this.eau);
 
-		this.space.add(this.vueAir);
-		this.space.add(this.vueEau);
-		this.space.repaint();
+		this.niSpace.add(this.vueAir);
+		this.niSpace.add(this.vueEau);
+
+		try {
+			for (Satellite satellite : this.air.getSatellites()) {
+				this.vueAir.add(new VueSatellite(satellite));
+			}
+			for (Balise balise : this.eau.getBalises()) {
+				this.vueEau.add(new VueBalise(balise));
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		this.niSpace.repaint();
 	}
 
 	public void startGraphicAnimation() {
@@ -49,28 +90,20 @@ public class Simulation {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-//			Component[] views = Simulation.this.space.getComponents();
-//			for (Component component : views) {
-//				// Met à jour toutes les vues éléments
-//				if (component instanceof VueElementMobile) {
-//					((VueElementMobile) component).mettreAJourVue();
-//				}
-//			}
+			// Étape de simulation
+			Simulation.this.air.move();
+			Simulation.this.eau.move();
 
-			try {
-				Simulation.this.vueAir.removeAll();
-				Simulation.this.vueAir.add(sat ? new VueSatellite() : new VueBalise());
-				sat = !sat;
-			} catch (IOException e1) {
-				e1.printStackTrace();
+			Component[] vuesAir = Simulation.this.vueAir.getComponents();
+			Component[] vuesEau = Simulation.this.vueEau.getComponents();
+			Component[] views = new Component[vuesAir.length + vuesEau.length];
+			System.arraycopy(vuesAir, 0, views, 0, vuesAir.length);
+			System.arraycopy(vuesEau, 0, views, vuesAir.length, vuesEau.length);
+
+			// Met à jour toutes les vues éléments
+			for (Component vueMobile : views) {
+				((VueElementMobile) vueMobile).mettreAJourVue();
 			}
-			Simulation.this.space.repaint();
-
-			// Lancement d'une étape de simulation
-			// ContexteDeSimulation contexteDeSimulation = new
-			// ContexteDeSimulation(Simulation.this);
-//			vueAir.etapeDeSimulation(contexteDeSimulation);
-//			vueEau.etapeDeSimulation(contexteDeSimulation);
 		}
 
 		public void start() {
