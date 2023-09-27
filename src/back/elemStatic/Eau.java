@@ -33,7 +33,6 @@ public class Eau extends Espace {
 				}
 			} else {
 				balise.move(getMaxX(), getMinX(), getMaxY(), getMinY());
-				balise.stockerDonnee();
 			}
 		}
 	}

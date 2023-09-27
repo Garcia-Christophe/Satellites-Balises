@@ -89,6 +89,7 @@ public class Balise extends ElementMobile {
 				this.moveVerticale(random, maxY, minY);
 				break;
 			}
+			stockerDonnee();
 		}
 	}
 
