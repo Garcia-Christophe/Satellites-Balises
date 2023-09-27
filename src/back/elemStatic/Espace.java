@@ -9,8 +9,7 @@ public abstract class Espace {
 	
 	private int maxX, minX, maxY, minY;
 	
-	private List<Balise> balisesPleine;
-	
+	private static List<Balise> balisesPleine;
 
 	public Espace(int maxX, int minX, int maxY, int minY) {
 		this.maxX = maxX;
@@ -53,19 +52,19 @@ public abstract class Espace {
 	}
 
 	public List<Balise> getBalisesPleine() {
-		return balisesPleine;
+		return Espace.balisesPleine;
 	}
 
 	public void setBalisesPleine(List<Balise> balisesPleine) {
-		this.balisesPleine = balisesPleine;
+		Espace.balisesPleine = balisesPleine;
 	}
 	
 	public boolean addBaliseToBalisesPleine(Balise balise) {
-		return this.balisesPleine.add(balise);
+		return Espace.balisesPleine.add(balise);
 	}
 	
 	public boolean removeBaliseToBalisesPleine(Balise balise) {
-		return this.balisesPleine.remove(balise);
+		return Espace.balisesPleine.remove(balise);
 	}
 	
 	public abstract void move();

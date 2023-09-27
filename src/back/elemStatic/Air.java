@@ -29,7 +29,6 @@ public class Air extends Espace{
 		for (Satellite satellite : this.satellites) {
 			satellite.move(getMaxX(), getMinX());
 			
-			List<Balise> baliseNonSynchronise = new ArrayList<>();
 			boolean dejaSynchro = false;
 			for (Balise balise : super.getBalisesPleine()) {
 				int baliseX = balise.getCoordonnee().getX();
@@ -40,11 +39,9 @@ public class Air extends Espace{
 					balise.synchronisation();
 					satellite.synchronisation();
 					dejaSynchro = true;
-				} else {
-					baliseNonSynchronise.add(balise);
 				}
 			}
-			super.setBalisesPleine(baliseNonSynchronise);
+			super.setBalisesPleine(new ArrayList<>());
 		}
 	}
 
