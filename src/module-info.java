@@ -6,4 +6,5 @@
  *
  */
 module SatellitesBalises {
+	requires java.desktop;
 }
