@@ -3,10 +3,12 @@ package back.elemMobile;
 import java.util.Random;
 
 public class Balise extends ElementMobile {
+	
+	private final static int tempsAttenteSynchro = 5;
 
-	private int capacite, stockage, nbDescente, indexDescente;
+	private int capacite, stockage, nbDescente, indexDescente, attenteSynchro;
 
-	private boolean estPleine;
+	private boolean estPleine, estSynchro;
 
 	public Balise(Coordonnee hautDroit, Coordonnee basGauche, Direction direction, int capacite, int maxY, int minY) {
 		super(hautDroit, basGauche, direction);
@@ -16,6 +18,8 @@ public class Balise extends ElementMobile {
 		this.estPleine = false;
 		this.indexDescente = 0;
 		this.nbDescente = rand.nextInt(maxY - minY);
+		this.estSynchro = false;
+		this.attenteSynchro = 0;
 	}
 
 	public int getCapacite() {
@@ -67,10 +71,17 @@ public class Balise extends ElementMobile {
 
 	@Override
 	public void synchronisation() {
-		System.out.println("synchronisation effectué");
-		this.setStockage(0);
-		this.setEstPleine(false);
-		this.setIndexDescente(this.getNbDescente());
+		if (this.attenteSynchro < tempsAttenteSynchro) {
+			this.estSynchro = true;
+			this.attenteSynchro++;
+		} else {
+			System.out.println("synchronisation effectué");
+			this.setStockage(0);
+			this.setEstPleine(false);
+			this.setIndexDescente(this.getNbDescente());
+			this.attenteSynchro = 0;
+			this.estSynchro = false;
+		}
 	}
 
 	public void move(int maxX, int minX, int maxY, int minY) {
@@ -113,13 +124,13 @@ public class Balise extends ElementMobile {
 
 	private void moveVerticale(double direction, int maxY, int minY) {
 		if (direction == 0) {
-			// vers le haut
+			// vers le bas
 			if (this.getBasGauche().getY() < maxY) {
 				this.getBasGauche().setY(this.getBasGauche().getY() + 10);
 				this.getHautDroit().setY(this.getHautDroit().getY() + 10);
 			}
 		} else {
-			// vers le bas
+			// vers le haut
 			if (this.getHautDroit().getY() > minY) {
 				this.getBasGauche().setY(this.getBasGauche().getY() - 10);
 				this.getHautDroit().setY(this.getHautDroit().getY() - 10);
