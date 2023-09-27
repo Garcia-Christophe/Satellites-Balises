@@ -2,8 +2,8 @@ package back.elemMobile;
 
 public class Satellite extends ElementMobile {
 
-	public Satellite(Coordonnee coordonnee) {
-		super(coordonnee, Direction.HORIZONTAL);
+	public Satellite(Coordonnee hautDroit, Coordonnee basGauche) {
+		super(hautDroit, basGauche, Direction.HORIZONTAL);
 	}
 	
 	@Override
@@ -12,9 +12,14 @@ public class Satellite extends ElementMobile {
 	}
 	
 	public void move(int maxX, int minX) {
-		this.getCoordonnee().setX(this.getCoordonnee().getX()+10);
-		if (this.getCoordonnee().getX() > maxX) 
-			this.getCoordonnee().setX(minX);
+		this.getBasGauche().setX(this.getBasGauche().getX() + 10);
+		this.getHautDroit().setX(this.getHautDroit().getX() + 10);
+		if (this.getHautDroit().getX() > maxX) {
+			int ecart = this.getHautDroit().getX() - this.getBasGauche().getX();
+			this.getBasGauche().setX(minX);
+			this.getHautDroit().setX(minX + ecart);
+		}
+			
 	}
 
 }

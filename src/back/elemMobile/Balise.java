@@ -8,8 +8,8 @@ public class Balise extends ElementMobile {
 
 	private boolean estPleine;
 
-	public Balise(Coordonnee coordonnee, Direction direction, int capacite, int maxY, int minY) {
-		super(coordonnee, direction);
+	public Balise(Coordonnee hautDroit, Coordonnee basGauche, Direction direction, int capacite, int maxY, int minY) {
+		super(hautDroit, basGauche, direction);
 		Random rand = new Random();
 		this.capacite = capacite;
 		this.stockage = 0;
@@ -75,8 +75,10 @@ public class Balise extends ElementMobile {
 
 	public void move(int maxX, int minX, int maxY, int minY) {
 		if (indexDescente != 0) {
-			if (this.getCoordonnee().getY() < maxY)
-				this.getCoordonnee().setY(this.getCoordonnee().getY() + 10);
+			if (this.getBasGauche().getY() < maxY) {
+				this.getBasGauche().setY(this.getBasGauche().getY() + 10);
+				this.getHautDroit().setY(this.getHautDroit().getY() + 10);
+			}
 			this.indexDescente--;
 		} else {
 			Random rand = new Random();
@@ -96,24 +98,32 @@ public class Balise extends ElementMobile {
 	private void moveHorizontale(double direction, int maxX, int minX) {
 		if (direction == 0) {
 			// vers la droite
-			if (this.getCoordonnee().getX() < maxX)
-				this.getCoordonnee().setX(this.getCoordonnee().getX() + 10);
+			if (this.getHautDroit().getX() < maxX) {
+				this.getBasGauche().setX(this.getBasGauche().getX() + 10);
+				this.getHautDroit().setX(this.getHautDroit().getX() + 10);
+			}
 		} else {
 			// vers la gauche
-			if (this.getCoordonnee().getX() > minX)
-				this.getCoordonnee().setX(this.getCoordonnee().getX() - 10);
+			if (this.getBasGauche().getX() > minX){
+				this.getBasGauche().setX(this.getBasGauche().getX() - 10);
+				this.getHautDroit().setX(this.getHautDroit().getX() - 10);
+			}
 		}
 	}
 
 	private void moveVerticale(double direction, int maxY, int minY) {
 		if (direction == 0) {
 			// vers le haut
-			if (this.getCoordonnee().getY() < maxY)
-				this.getCoordonnee().setY(this.getCoordonnee().getY() + 10);
+			if (this.getBasGauche().getY() < maxY) {
+				this.getBasGauche().setY(this.getBasGauche().getY() + 10);
+				this.getHautDroit().setY(this.getHautDroit().getY() + 10);
+			}
 		} else {
 			// vers le bas
-			if (this.getCoordonnee().getY() > minY)
-				this.getCoordonnee().setY(this.getCoordonnee().getY() - 10);
+			if (this.getHautDroit().getY() > minY) {
+				this.getBasGauche().setY(this.getBasGauche().getY() - 10);
+				this.getHautDroit().setY(this.getHautDroit().getY() - 10);
+			}
 		}
 	}
 

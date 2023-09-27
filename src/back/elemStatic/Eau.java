@@ -26,8 +26,9 @@ public class Eau extends Espace {
 	public void move() {
 		for (Balise balise : this.balises) {
 			if (balise.estPleine()) {
-				if (balise.getCoordonnee().getY() > super.getMinY()) {
-					balise.getCoordonnee().setY(balise.getCoordonnee().getY() - 10);
+				if (balise.getBasGauche().getY() > super.getMinY()) {
+					balise.getBasGauche().setY(balise.getBasGauche().getY() - 10);
+					balise.getHautDroit().setY(balise.getHautDroit().getY() - 10);
 				} else {
 					super.addBaliseToBalisesPleine(balise);
 				}

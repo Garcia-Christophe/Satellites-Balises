@@ -1,24 +1,35 @@
 package back.elemMobile;
 
 public abstract class ElementMobile {
-	protected Coordonnee coordonnee;
+	protected Coordonnee hautDroit, basGauche;
 	
 	protected Direction direction;
 	
-	public ElementMobile(Coordonnee coordonnee, Direction direction) {
+	public ElementMobile(Coordonnee hautDroit, Coordonnee basGauche, Direction direction) {
 		super();
-		this.coordonnee = coordonnee;
+		this.hautDroit = hautDroit;
+		this.basGauche = basGauche;
 		this.direction = direction;
 	}
 
 
-	public Coordonnee getCoordonnee() {
-		return coordonnee;
+	public Coordonnee getHautDroit() {
+		return hautDroit;
 	}
 
 
-	public void setCoordonnee(Coordonnee coordonnee) {
-		this.coordonnee = coordonnee;
+	public void setHautDroit(Coordonnee hautDroit) {
+		this.hautDroit = hautDroit;
+	}
+
+
+	public Coordonnee getBasGauche() {
+		return basGauche;
+	}
+
+
+	public void setBasGauche(Coordonnee basGauche) {
+		this.basGauche = basGauche;
 	}
 
 
