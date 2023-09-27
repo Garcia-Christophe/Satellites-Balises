@@ -10,7 +10,7 @@ public class Eau extends Espace {
 	
 
 	public Eau(int maxX, int minX, int maxY, int minY, List<Balise> balises) {
-		super(maxX, minX, maxY - minY, 0);
+		super(maxX, minX, maxY, minY);
 		this.balises = balises;
 	}
 
