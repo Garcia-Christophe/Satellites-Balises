@@ -16,6 +16,10 @@ public abstract class VueElementMobile extends NiImage {
 		super(path);
 	}
 
+	public void mettreAJourVue() {
+		this.redessine();
+	}
+
 	public abstract void redessine();
 
 }
