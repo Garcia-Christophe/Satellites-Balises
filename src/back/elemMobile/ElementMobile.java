@@ -32,7 +32,6 @@ public abstract class ElementMobile {
 	}
 	
 	public abstract void synchronisation();
-
-
+	
 	public enum Direction{HORIZONTAL, VERTICAL}
 }
