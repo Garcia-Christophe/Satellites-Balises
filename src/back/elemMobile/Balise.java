@@ -74,8 +74,8 @@ public class Balise extends ElementMobile {
 
 	public void move(int maxX, int minX, int maxY, int minY) {
 		if (indexDescente != 0) {
-			if (this.getCoordonnee().getY() > minY)
-				this.getCoordonnee().setY(this.getCoordonnee().getY() - 10);
+			if (this.getCoordonnee().getY() < maxY)
+				this.getCoordonnee().setY(this.getCoordonnee().getY() + 10);
 			this.indexDescente--;
 		} else {
 			Random rand = new Random();
@@ -83,8 +83,10 @@ public class Balise extends ElementMobile {
 			switch (this.getDirection()) {
 			case HORIZONTAL:
 				this.moveHorizontale(random, maxX, minX);
+				break;
 			case VERTICAL:
 				this.moveVerticale(random, maxY, minY);
+				break;
 			}
 		}
 	}
