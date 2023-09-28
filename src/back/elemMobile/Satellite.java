@@ -7,6 +7,7 @@ public class Satellite extends ElementMobile {
 
 	public Satellite(Coordonnee hautDroit, Coordonnee basGauche) {
 		super(hautDroit, basGauche, Direction.HORIZONTAL);
+		this.attenteSynchro = 0;
 	}
 	
 	@Override
@@ -14,10 +15,10 @@ public class Satellite extends ElementMobile {
 		if (this.attenteSynchro < super.tempsAttenteSynchro) {
 			this.estSynchro = true;
 			this.attenteSynchro++;
-			this.attenteSynchro = 0;
 		} else {
-			System.out.println("synchronisation effectué");
+			System.out.println("synchronisation effectuï¿½");
 			this.estSynchro = false;
+			this.attenteSynchro = 0;
 		}
 	}
 	

@@ -15,7 +15,7 @@ public class Balise extends ElementMobile {
 		this.stockage = 0;
 		this.estPleine = false;
 		this.indexDescente = 0;
-		this.nbDescente = rand.nextInt(maxY - minY);
+		this.nbDescente = rand.nextInt(maxY - minY) / 10;
 		this.estSynchro = false;
 		this.attenteSynchro = 0;
 	}
@@ -83,7 +83,7 @@ public class Balise extends ElementMobile {
 	}
 
 	public void move(int maxX, int minX, int maxY, int minY) {
-		if (indexDescente != 0) {
+		if (indexDescente > 0) {
 			if (this.getBasGauche().getY() < maxY) {
 				this.getBasGauche().setY(this.getBasGauche().getY() + 10);
 				this.getHautDroit().setY(this.getHautDroit().getY() + 10);
