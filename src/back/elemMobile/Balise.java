@@ -69,24 +69,10 @@ public class Balise extends ElementMobile {
 
 	@Override
 	public void synchronisation() {
-<<<<<<< HEAD
-		if (this.attenteSynchro < super.tempsAttenteSynchro) {
-			this.estSynchro = true;
-			this.attenteSynchro++;
-		} else {
-			System.out.println("synchronisation effectué");
-			this.setStockage(0);
-			this.setEstPleine(false);
-			this.setIndexDescente(this.getNbDescente());
-			this.attenteSynchro = 0;
-			this.estSynchro = false;
-		}
-=======
 		System.out.println("synchronisation effectuï¿½");
 		this.setStockage(0);
 		this.setEstPleine(false);
 		this.setIndexDescente(this.getNbDescente());
->>>>>>> d7ce80a (nouvelle version)
 	}
 
 	public void move(int maxX, int minX, int maxY, int minY) {
