@@ -69,24 +69,17 @@ public class Balise extends ElementMobile {
 
 	@Override
 	public void synchronisation() {
-<<<<<<< HEAD
 		if (this.attenteSynchro < super.tempsAttenteSynchro) {
 			this.estSynchro = true;
 			this.attenteSynchro++;
 		} else {
-			System.out.println("synchronisation effectué");
+			System.out.println("synchronisation effectuï¿½");
 			this.setStockage(0);
 			this.setEstPleine(false);
 			this.setIndexDescente(this.getNbDescente());
 			this.attenteSynchro = 0;
 			this.estSynchro = false;
 		}
-=======
-		System.out.println("synchronisation effectuï¿½");
-		this.setStockage(0);
-		this.setEstPleine(false);
-		this.setIndexDescente(this.getNbDescente());
->>>>>>> d7ce80a (nouvelle version)
 	}
 
 	public void move(int maxX, int minX, int maxY, int minY) {
@@ -120,7 +113,7 @@ public class Balise extends ElementMobile {
 			}
 		} else {
 			// vers la gauche
-			if (this.getBasGauche().getX() > minX){
+			if (this.getBasGauche().getX() > minX) {
 				this.getBasGauche().setX(this.getBasGauche().getX() - 10);
 				this.getHautDroit().setX(this.getHautDroit().getX() - 10);
 			}
