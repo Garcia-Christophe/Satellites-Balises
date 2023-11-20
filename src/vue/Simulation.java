@@ -13,7 +13,9 @@ import javax.swing.Timer;
 
 import back.elemMobile.Balise;
 import back.elemMobile.Coordonnee;
-import back.elemMobile.ElementMobile.Direction;
+import back.elemMobile.MoveStrategyHorizontal;
+import back.elemMobile.MoveStrategySinusoidale;
+import back.elemMobile.MoveStrategyVertical;
 import back.elemMobile.Satellite;
 import back.elemStatic.Air;
 import back.elemStatic.Eau;
@@ -48,11 +50,11 @@ public class Simulation {
 		listeSatellites.add(new Satellite(null, null));
 		listeSatellites.add(new Satellite(null, null));
 		List<Balise> listeBalises = new ArrayList<Balise>();
-		listeBalises.add(new Balise(null, null, Direction.HORIZONTAL, 100, 364, 0));
-		listeBalises.add(new Balise(null, null, Direction.HORIZONTAL, 100, 364, 0));
-		listeBalises.add(new Balise(null, null, Direction.HORIZONTAL, 100, 364, 0));
-		listeBalises.add(new Balise(null, null, Direction.HORIZONTAL, 100, 364, 0));
-		listeBalises.add(new Balise(null, null, Direction.HORIZONTAL, 100, 364, 0));
+		listeBalises.add(new Balise(null, null, new MoveStrategyHorizontal(), 100, 364, 0));
+		listeBalises.add(new Balise(null, null, new MoveStrategyHorizontal(), 100, 364, 0));
+		listeBalises.add(new Balise(null, null, new MoveStrategyHorizontal(), 100, 364, 0));
+		listeBalises.add(new Balise(null, null, new MoveStrategyVertical(), 100, 364, 0));
+		listeBalises.add(new Balise(null, null, new MoveStrategySinusoidale(), 100, 364, 0));
 		this.air = new Air(1024, 0, 364, 0, listeSatellites);
 		this.eau = new Eau(1024, 0, 364, 0, listeBalises);
 

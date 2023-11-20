@@ -27,7 +27,7 @@ public class Air extends Espace{
 	@Override
 	public void move() {
 		for (Satellite satellite : this.satellites) {
-			satellite.move(getMaxX(), getMinX());
+			satellite.getMoveStrategy().move(satellite, getMaxX(), getMinX(), getMaxY(), getMinY());
 			
 			boolean dejaSynchro = false;
 			for (Balise balise : super.getBalisesPleine()) {

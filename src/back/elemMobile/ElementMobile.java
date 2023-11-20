@@ -6,13 +6,13 @@ public abstract class ElementMobile {
 	
 	protected Coordonnee hautDroit, basGauche;
 	
-	protected Direction direction;
+	protected MoveStrategy moveStrategy;
 	
-	public ElementMobile(Coordonnee hautDroit, Coordonnee basGauche, Direction direction) {
+	public ElementMobile(Coordonnee hautDroit, Coordonnee basGauche, MoveStrategy moveStrategy) {
 		super();
 		this.hautDroit = hautDroit;
 		this.basGauche = basGauche;
-		this.direction = direction;
+		this.moveStrategy = moveStrategy;
 	}
 
 
@@ -36,16 +36,15 @@ public abstract class ElementMobile {
 	}
 
 
-	public Direction getDirection() {
-		return direction;
+	public MoveStrategy getMoveStrategy() {
+		return moveStrategy;
 	}
 
 
-	public void setDirection(Direction direction) {
-		this.direction = direction;
+	public void setMoveStrategy(MoveStrategy moveStrategy) {
+		this.moveStrategy = moveStrategy;
 	}
-	
+
+
 	public abstract void synchronisation();
-	
-	public enum Direction{HORIZONTAL, VERTICAL}
 }
