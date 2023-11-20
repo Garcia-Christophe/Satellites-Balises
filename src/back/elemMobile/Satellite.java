@@ -1,11 +1,13 @@
 package back.elemMobile;
 
+import java.awt.Point;
+
 public class Satellite extends ElementMobile {
 	private int attenteSynchro;
 	
 	private boolean estSynchro;
 
-	public Satellite(Coordonnee hautDroit, Coordonnee basGauche) {
+	public Satellite(Point hautDroit, Point basGauche) {
 		super(hautDroit, basGauche, new MoveStrategySatellite());
 		this.attenteSynchro = 0;
 	}

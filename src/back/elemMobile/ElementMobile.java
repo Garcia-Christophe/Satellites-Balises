@@ -1,14 +1,16 @@
 package back.elemMobile;
 
+import java.awt.Point;
+
 public abstract class ElementMobile {
 	
 	protected final int tempsAttenteSynchro = 5;
 	
-	protected Coordonnee hautDroit, basGauche;
+	protected Point hautDroit, basGauche;
 	
 	protected MoveStrategy moveStrategy;
 	
-	public ElementMobile(Coordonnee hautDroit, Coordonnee basGauche, MoveStrategy moveStrategy) {
+	public ElementMobile(Point hautDroit, Point basGauche, MoveStrategy moveStrategy) {
 		super();
 		this.hautDroit = hautDroit;
 		this.basGauche = basGauche;
@@ -16,22 +18,22 @@ public abstract class ElementMobile {
 	}
 
 
-	public Coordonnee getHautDroit() {
+	public Point getHautDroit() {
 		return hautDroit;
 	}
 
 
-	public void setHautDroit(Coordonnee hautDroit) {
+	public void setHautDroit(Point hautDroit) {
 		this.hautDroit = hautDroit;
 	}
 
 
-	public Coordonnee getBasGauche() {
+	public Point getBasGauche() {
 		return basGauche;
 	}
 
 
-	public void setBasGauche(Coordonnee basGauche) {
+	public void setBasGauche(Point basGauche) {
 		this.basGauche = basGauche;
 	}
 

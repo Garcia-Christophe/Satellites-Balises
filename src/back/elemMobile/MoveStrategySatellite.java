@@ -6,12 +6,13 @@ public class MoveStrategySatellite extends MoveStrategy {
 
 	@Override
 	public void move(ElementMobile elem, int maxX, int minX, int maxY, int minY) {
-		elem.getBasGauche().setX(elem.getBasGauche().getX() + 10);
-		elem.getHautDroit().setX(elem.getHautDroit().getX() + 10);
+		int altitude = (int) elem.getBasGauche().getY();
+		elem.getBasGauche().setLocation(elem.getBasGauche().getX() + (altitude / 20), elem.getBasGauche().getY());
+		elem.getHautDroit().setLocation(elem.getHautDroit().getX() + (altitude / 20), elem.getBasGauche().getY());
 		if (elem.getHautDroit().getX() > maxX) {
-			int ecart = elem.getHautDroit().getX() - elem.getBasGauche().getX();
-			elem.getBasGauche().setX(minX);
-			elem.getHautDroit().setX(minX + ecart);
+			int ecart = (int) (elem.getHautDroit().getX() - elem.getBasGauche().getX());
+			elem.getBasGauche().setLocation(minX, elem.getBasGauche().getY());
+			elem.getHautDroit().setLocation(minX + ecart, elem.getHautDroit().getY());
 		}
 	}
 

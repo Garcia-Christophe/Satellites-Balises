@@ -31,8 +31,8 @@ public class Air extends Espace{
 			
 			boolean dejaSynchro = false;
 			for (Balise balise : super.getBalisesPleine()) {
-				int baliseX = (balise.getHautDroit().getX() + balise.getBasGauche().getX()) / 2;
-				int satelliteX = (satellite.getHautDroit().getX() + satellite.getBasGauche().getX()) / 2;
+				double baliseX = (balise.getHautDroit().getX() + balise.getBasGauche().getX()) / 2;
+				double satelliteX = (satellite.getHautDroit().getX() + satellite.getBasGauche().getX()) / 2;
 				boolean inIntervalSynchro = (baliseX >= (satelliteX - 100))
 						&& (baliseX <= (satelliteX + 100));
 				if (inIntervalSynchro && !dejaSynchro) {

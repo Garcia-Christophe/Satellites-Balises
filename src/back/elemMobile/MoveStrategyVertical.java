@@ -11,14 +11,14 @@ public class MoveStrategyVertical extends MoveStrategy {
 		if (direction == 0) {
 			// vers le bas
 			if (elem.getHautDroit().getY() < maxY) {
-				elem.getBasGauche().setY(elem.getBasGauche().getY() + 10);
-				elem.getHautDroit().setY(elem.getHautDroit().getY() + 10);
+				elem.getBasGauche().setLocation(elem.getBasGauche().getX(), elem.getBasGauche().getY() + 10);
+				elem.getHautDroit().setLocation(elem.getHautDroit().getX(), elem.getHautDroit().getY() + 10);
 			}
 		} else {
 			// vers le haut
 			if (elem.getBasGauche().getY() > minY) {
-				elem.getBasGauche().setY(elem.getBasGauche().getY() - 10);
-				elem.getHautDroit().setY(elem.getHautDroit().getY() - 10);
+				elem.getBasGauche().setLocation(elem.getBasGauche().getX(), elem.getBasGauche().getY() - 10);
+				elem.getHautDroit().setLocation(elem.getHautDroit().getX(), elem.getHautDroit().getY() - 10);
 			}
 		}
 	}

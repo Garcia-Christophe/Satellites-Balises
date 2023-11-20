@@ -2,6 +2,7 @@ package vue;
 
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -12,7 +13,6 @@ import java.util.Random;
 import javax.swing.Timer;
 
 import back.elemMobile.Balise;
-import back.elemMobile.Coordonnee;
 import back.elemMobile.MoveStrategyHorizontal;
 import back.elemMobile.MoveStrategySinusoidale;
 import back.elemMobile.MoveStrategyVertical;
@@ -74,16 +74,16 @@ public class Simulation {
 				int randX = new Random().nextInt(900 - 100) + 100;
 				int randY = new Random().nextInt(180 - 40) + 10;
 				System.out.println(vueSatellite.getImage().getWidth(null) + randX);
-				satellite.setHautDroit(new Coordonnee(vueSatellite.getImage().getWidth(null) + randX, 0 + randY));
-				satellite.setBasGauche(new Coordonnee(0 + randX, vueSatellite.getImage().getHeight(null) + randY));
+				satellite.setHautDroit(new Point(vueSatellite.getImage().getWidth(null) + randX, 0 + randY));
+				satellite.setBasGauche(new Point(0 + randX, vueSatellite.getImage().getHeight(null) + randY));
 				this.vueAir.add(vueSatellite);
 			}
 			for (Balise balise : this.eau.getBalises()) {
 				VueBalise vueBalise = new VueBalise(balise);
 				int randX = new Random().nextInt(900 - 100) + 100;
 				int randY = new Random().nextInt(300 - 40) + 10;
-				balise.setHautDroit(new Coordonnee(vueBalise.getImage().getWidth(null) + randX, 0 + randY));
-				balise.setBasGauche(new Coordonnee(0 + randX, vueBalise.getImage().getHeight(null) + randY));
+				balise.setHautDroit(new Point(vueBalise.getImage().getWidth(null) + randX, 0 + randY));
+				balise.setBasGauche(new Point(0 + randX, vueBalise.getImage().getHeight(null) + randY));
 				this.vueEau.add(vueBalise);
 			}
 		} catch (IOException e) {

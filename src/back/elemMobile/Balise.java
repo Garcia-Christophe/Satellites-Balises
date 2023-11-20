@@ -1,5 +1,6 @@
 package back.elemMobile;
 
+import java.awt.Point;
 import java.util.Random;
 
 public class Balise extends ElementMobile {
@@ -8,7 +9,7 @@ public class Balise extends ElementMobile {
 
 	private boolean estPleine, estSynchro;
 
-	public Balise(Coordonnee hautDroit, Coordonnee basGauche, MoveStrategy moveStrategy, int capacite, int maxY, int minY) {
+	public Balise(Point hautDroit, Point basGauche, MoveStrategy moveStrategy, int capacite, int maxY, int minY) {
 		super(hautDroit, basGauche, moveStrategy);
 		Random rand = new Random();
 		this.capacite = capacite;
@@ -79,19 +80,6 @@ public class Balise extends ElementMobile {
 			this.setIndexDescente(this.getNbDescente());
 			this.attenteSynchro = 0;
 			this.estSynchro = false;
-		}
-	}
-
-	public void move(int maxX, int minX, int maxY, int minY) {
-		if (indexDescente > 0) {
-			if (this.getBasGauche().getY() < maxY) {
-				this.getBasGauche().setY(this.getBasGauche().getY() + 10);
-				this.getHautDroit().setY(this.getHautDroit().getY() + 10);
-			}
-			this.indexDescente--;
-		} else {
-			this.moveStrategy.move(this, maxX, minX, maxY, minY);
-			stockerDonnee();
 		}
 	}
 }

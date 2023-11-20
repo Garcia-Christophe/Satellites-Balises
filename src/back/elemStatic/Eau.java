@@ -26,13 +26,13 @@ public class Eau extends Espace {
 		for (Balise balise : this.balises) {
 			if (balise.estPleine()) {
 				if (balise.getHautDroit().getY() > super.getMinY() + 9) {
-					balise.getBasGauche().setY(balise.getBasGauche().getY() - 10);
-					balise.getHautDroit().setY(balise.getHautDroit().getY() - 10);
+					balise.getBasGauche().setLocation(balise.getBasGauche().getX(), balise.getBasGauche().getY() - 10);
+					balise.getHautDroit().setLocation(balise.getHautDroit().getX(), balise.getHautDroit().getY() - 10);
 				} else {
 					super.addBaliseToBalisesPleine(balise);
 				}
 			} else {
-				balise.move(getMaxX(), getMinX(), getMaxY(), getMinY());
+				balise.getMoveStrategy().move(balise, getMaxX(), getMinX(), getMaxY(), getMinY());
 			}
 		}
 	}
