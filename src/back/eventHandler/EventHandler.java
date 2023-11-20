@@ -1,4 +1,4 @@
-package eventHandler;
+package back.eventHandler;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -7,12 +7,13 @@ import java.util.Map;
 import java.util.Set;
 
 public class EventHandler {
-	
-	Map<Class<? extends AbstractEvent>,Set<Object>> registry = new HashMap<Class<? extends AbstractEvent>,Set<Object>>();
-	
-	public void send (AbstractEvent event) {
+
+	Map<Class<? extends AbstractEvent>, Set<Object>> registry = new HashMap<Class<? extends AbstractEvent>, Set<Object>>();
+
+	public void send(AbstractEvent event) {
 		Set<Object> l = registry.get(event.getClass());
-		if (l == null) return;
+		if (l == null)
+			return;
 		Iterator<Object> itor = l.iterator();
 		while (itor.hasNext()) {
 			event.sendTo(itor.next());
@@ -27,9 +28,11 @@ public class EventHandler {
 		}
 		set.add(listener);
 	}
+
 	public void unregisterListener(Class<? extends AbstractEvent> whichEventType, Object listener) {
 		Set<Object> set = registry.get(whichEventType);
-		if (set == null) return;
+		if (set == null)
+			return;
 		set.remove(listener);
 	}
 
