@@ -10,13 +10,13 @@ public class MoveStrategyVertical extends MoveStrategy {
 		double direction = rand.nextInt(2);
 		if (direction == 0) {
 			// vers le bas
-			if (elem.getHautDroit().getY() < maxY) {
+			if (elem.getBasGauche().getY() < maxY) {
 				elem.getBasGauche().setLocation(elem.getBasGauche().getX(), elem.getBasGauche().getY() + 10);
 				elem.getHautDroit().setLocation(elem.getHautDroit().getX(), elem.getHautDroit().getY() + 10);
 			}
 		} else {
 			// vers le haut
-			if (elem.getBasGauche().getY() > minY) {
+			if (elem.getHautDroit().getY() > minY) {
 				elem.getBasGauche().setLocation(elem.getBasGauche().getX(), elem.getBasGauche().getY() - 10);
 				elem.getHautDroit().setLocation(elem.getHautDroit().getX(), elem.getHautDroit().getY() - 10);
 			}

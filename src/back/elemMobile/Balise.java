@@ -8,6 +8,8 @@ public class Balise extends ElementMobile {
 	private int capacite, stockage, nbDescente, indexDescente, attenteSynchro;
 
 	private boolean estPleine, estSynchro;
+	
+	private MoveStrategy defaultStrategy;
 
 	public Balise(Point hautDroit, Point basGauche, MoveStrategy moveStrategy, int capacite, int maxY, int minY) {
 		super(hautDroit, basGauche, moveStrategy);
@@ -16,9 +18,10 @@ public class Balise extends ElementMobile {
 		this.stockage = 0;
 		this.estPleine = false;
 		this.indexDescente = 0;
-		this.nbDescente = rand.nextInt(maxY - minY) / 10;
+		this.nbDescente = rand.nextInt(maxY - minY - 1) / 10;
 		this.estSynchro = false;
 		this.attenteSynchro = 0;
+		this.defaultStrategy = moveStrategy;
 	}
 
 	public int getCapacite() {
@@ -61,11 +64,18 @@ public class Balise extends ElementMobile {
 		this.indexDescente = indexDescente;
 	}
 
+	public MoveStrategy getDefaultStrategy() {
+		return defaultStrategy;
+	}
+
 	public void stockerDonnee() {
 		Random rand = new Random();
 		int nbdonnee = rand.nextInt(3) + 1;
 		this.stockage += nbdonnee;
 		this.estPleine = this.stockage >= this.capacite;
+		if (estPleine) {
+			this.setMoveStrategy(new MoveStrategySurface());
+		}
 	}
 
 	@Override
@@ -74,7 +84,7 @@ public class Balise extends ElementMobile {
 			this.estSynchro = true;
 			this.attenteSynchro++;
 		} else {
-			System.out.println("synchronisation effectu�");
+			System.out.println("synchronisation effectuee");
 			this.setStockage(0);
 			this.setEstPleine(false);
 			this.setIndexDescente(this.getNbDescente());
