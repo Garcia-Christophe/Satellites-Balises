@@ -1,5 +1,6 @@
 package vue;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Point;
@@ -19,6 +20,7 @@ import back.elemMobile.MoveStrategyVertical;
 import back.elemMobile.Satellite;
 import back.elemStatic.Air;
 import back.elemStatic.Eau;
+import nicellipse.component.NiRectangle;
 import nicellipse.component.NiSpace;
 
 public class Simulation {
@@ -29,9 +31,9 @@ public class Simulation {
 
 	private Eau eau;
 
-	private VueAir vueAir;
+	//private VueAir vueAir;
 
-	private VueEau vueEau;
+	//private VueEau vueEau;
 
 	public static void main(String[] args) {
 		Simulation simulation = new Simulation();
@@ -50,25 +52,32 @@ public class Simulation {
 		listeSatellites.add(new Satellite());
 		listeSatellites.add(new Satellite());
 		List<Balise> listeBalises = new ArrayList<Balise>();
-		listeBalises.add(new Balise(new MoveStrategyHorizontal(), 100, 364, 0));
-		listeBalises.add(new Balise(new MoveStrategyHorizontal(), 100, 364, 0));
-		listeBalises.add(new Balise(new MoveStrategyHorizontal(), 100, 364, 0));
-		listeBalises.add(new Balise(new MoveStrategyVertical(), 100, 364, 0));
-		listeBalises.add(new Balise(new MoveStrategySinusoidale(), 100, 364, 0));
+		listeBalises.add(new Balise(new MoveStrategyHorizontal(), 100, 728, 364));
+		listeBalises.add(new Balise(new MoveStrategyHorizontal(), 100, 728, 364));
+		listeBalises.add(new Balise(new MoveStrategyHorizontal(), 100, 728, 364));
+		listeBalises.add(new Balise(new MoveStrategyVertical(), 100, 728, 364));
+		listeBalises.add(new Balise(new MoveStrategySinusoidale(), 100, 728, 364));
 		this.air = new Air(1024, 0, 364, 0, listeSatellites);
-		this.eau = new Eau(1024, 0, 364, 0, listeBalises);
+		this.eau = new Eau(1024, 0, 728, 364, listeBalises);
 
 		this.nouveauxEspaces();
 	}
 
 	public void nouveauxEspaces() {
-		this.vueAir = new VueAir(this.air);
-		this.vueEau = new VueEau(this.eau, this.niSpace.getHeight());
+//		this.vueAir = new VueAir(this.air);
+//		this.vueEau = new VueEau(this.eau, this.niSpace.getHeight());
+		NiRectangle vueAir = new NiRectangle();
+		vueAir.setBounds(0, 0, 1024, 364);
+		vueAir.setBackground(Color.white);
+		NiRectangle vueEau = new NiRectangle();
+		vueEau.setBounds(0, 364, 1024, 364);
+		vueEau.setBackground(Color.blue);
 
-		this.niSpace.add(this.vueAir);
-		this.niSpace.add(this.vueEau);
-
+		/**this.niSpace.add(vueAir);
+		this.niSpace.add(vueEau);**/
+		
 		try {
+			System.out.println("test");
 			for (Satellite satellite : this.air.getSatellites()) {
 				VueSatellite vueSatellite = new VueSatellite(satellite);
 				int randX = new Random().nextInt(900 - 100) + 100;
@@ -76,15 +85,15 @@ public class Simulation {
 				System.out.println(vueSatellite.getImage().getWidth(null) + randX);
 				satellite.setHautDroit(new Point(vueSatellite.getImage().getWidth(null) + randX, 0 + randY));
 				satellite.setBasGauche(new Point(0 + randX, vueSatellite.getImage().getHeight(null) + randY));
-				this.vueAir.add(vueSatellite);
+				this.niSpace.add(vueSatellite);
 			}
 			for (Balise balise : this.eau.getBalises()) {
 				VueBalise vueBalise = new VueBalise(balise);
 				int randX = new Random().nextInt(900 - 100) + 100;
-				int randY = new Random().nextInt(300 - 40) + 10;
+				int randY = new Random().nextInt(300 - 40) + 10 + 364;
 				balise.setHautDroit(new Point(vueBalise.getImage().getWidth(null) + randX, 0 + randY));
 				balise.setBasGauche(new Point(0 + randX, vueBalise.getImage().getHeight(null) + randY));
-				this.vueEau.add(vueBalise);
+				this.niSpace.add(vueBalise);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -108,15 +117,17 @@ public class Simulation {
 			Simulation.this.air.move();
 			Simulation.this.eau.move();
 
-			Component[] vuesAir = Simulation.this.vueAir.getComponents();
-			Component[] vuesEau = Simulation.this.vueEau.getComponents();
-			Component[] views = new Component[vuesAir.length + vuesEau.length];
-			System.arraycopy(vuesAir, 0, views, 0, vuesAir.length);
-			System.arraycopy(vuesEau, 0, views, vuesAir.length, vuesEau.length);
+//			Component[] vuesAir = Simulation.this.vueAir.getComponents();
+//			Component[] vuesEau = Simulation.this.vueEau.getComponents();
+//			Component[] views = new Component[vuesAir.length + vuesEau.length];
+//			System.arraycopy(vuesAir, 0, views, 0, vuesAir.length);
+//			System.arraycopy(vuesEau, 0, views, vuesAir.length, vuesEau.length);
 
 			// Met à jour toutes les vues éléments
-			for (Component vueMobile : views) {
-				((VueElementMobile) vueMobile).mettreAJourVue();
+			for (Component vueMobile : Simulation.this.niSpace.getComponents()) {
+				if (vueMobile instanceof VueElementMobile) {
+					((VueElementMobile) vueMobile).mettreAJourVue();
+				}
 			}
 		}
 
