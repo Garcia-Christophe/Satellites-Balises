@@ -10,10 +10,10 @@ public abstract class ElementMobile {
 	
 	protected MoveStrategy moveStrategy;
 	
-	public ElementMobile(Point hautDroit, Point basGauche, MoveStrategy moveStrategy) {
+	public ElementMobile(MoveStrategy moveStrategy) {
 		super();
-		this.hautDroit = hautDroit;
-		this.basGauche = basGauche;
+		this.hautDroit = new Point(0, 0);
+		this.basGauche = new Point(0, 0);
 		this.moveStrategy = moveStrategy;
 	}
 

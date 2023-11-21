@@ -11,8 +11,8 @@ public class Balise extends ElementMobile {
 	
 	private MoveStrategy defaultStrategy;
 
-	public Balise(Point hautDroit, Point basGauche, MoveStrategy moveStrategy, int capacite, int maxY, int minY) {
-		super(hautDroit, basGauche, moveStrategy);
+	public Balise(MoveStrategy moveStrategy, int capacite, int maxY, int minY) {
+		super(moveStrategy);
 		Random rand = new Random();
 		this.capacite = capacite;
 		this.stockage = 0;

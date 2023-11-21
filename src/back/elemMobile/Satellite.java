@@ -7,8 +7,8 @@ public class Satellite extends ElementMobile {
 	
 	private boolean estSynchro;
 
-	public Satellite(Point hautDroit, Point basGauche) {
-		super(hautDroit, basGauche, new MoveStrategySatellite());
+	public Satellite() {
+		super(new MoveStrategySatellite());
 		this.attenteSynchro = 0;
 	}
 	

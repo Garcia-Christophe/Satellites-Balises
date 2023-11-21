@@ -44,17 +44,17 @@ public class Simulation {
 		this.niSpace.openInWindow();
 
 		List<Satellite> listeSatellites = new ArrayList<Satellite>();
-		listeSatellites.add(new Satellite(null, null));
-		listeSatellites.add(new Satellite(null, null));
-		listeSatellites.add(new Satellite(null, null));
-		listeSatellites.add(new Satellite(null, null));
-		listeSatellites.add(new Satellite(null, null));
+		listeSatellites.add(new Satellite());
+		listeSatellites.add(new Satellite());
+		listeSatellites.add(new Satellite());
+		listeSatellites.add(new Satellite());
+		listeSatellites.add(new Satellite());
 		List<Balise> listeBalises = new ArrayList<Balise>();
-		listeBalises.add(new Balise(null, null, new MoveStrategyHorizontal(), 100, 364, 0));
-		listeBalises.add(new Balise(null, null, new MoveStrategyHorizontal(), 100, 364, 0));
-		listeBalises.add(new Balise(null, null, new MoveStrategyHorizontal(), 100, 364, 0));
-		listeBalises.add(new Balise(null, null, new MoveStrategyVertical(), 100, 364, 0));
-		listeBalises.add(new Balise(null, null, new MoveStrategySinusoidale(), 100, 364, 0));
+		listeBalises.add(new Balise(new MoveStrategyHorizontal(), 100, 364, 0));
+		listeBalises.add(new Balise(new MoveStrategyHorizontal(), 100, 364, 0));
+		listeBalises.add(new Balise(new MoveStrategyHorizontal(), 100, 364, 0));
+		listeBalises.add(new Balise(new MoveStrategyVertical(), 100, 364, 0));
+		listeBalises.add(new Balise(new MoveStrategySinusoidale(), 100, 364, 0));
 		this.air = new Air(1024, 0, 364, 0, listeSatellites);
 		this.eau = new Eau(1024, 0, 364, 0, listeBalises);
 
