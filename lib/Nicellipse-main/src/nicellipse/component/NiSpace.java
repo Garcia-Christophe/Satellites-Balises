@@ -11,22 +11,23 @@ import javax.swing.JPanel;
 public class NiSpace extends JPanel implements NiBasicComponent {
 	private static final long serialVersionUID = -7681440479994731039L;
 	private String name;
-	
-	
+
+	@Override
 	public Color defaultBackground() {
 		return Color.white;
 	}
-	
+
 	public NiSpace(String name, Dimension dim) {
 		this.defaultSetup();
 		this.name = name;
 		this.setPreferredSize(dim);
 		this.setLayout(null);
 	}
-		
+
 	public void openInWindow() {
 		JFrame frame = new JFrame(name);
 		WindowAdapter wa = new WindowAdapter() {
+			@Override
 			public void windowClosing(WindowEvent e) {
 				System.exit(0);
 			}
@@ -36,8 +37,8 @@ public class NiSpace extends JPanel implements NiBasicComponent {
 		frame.getContentPane().add(this);
 		frame.pack();
 		frame.setVisible(true);
+		frame.setResizable(false);
 		requestFocus();
 	}
-
 
 }
