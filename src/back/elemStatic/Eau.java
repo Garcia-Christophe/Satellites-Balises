@@ -3,7 +3,6 @@ package back.elemStatic;
 import java.util.List;
 
 import back.elemMobile.Balise;
-import back.elemMobile.MoveStrategySurface;
 
 public class Eau extends Espace {
 
@@ -25,16 +24,14 @@ public class Eau extends Espace {
 	@Override
 	public void move() {
 		for (Balise balise : this.balises) {
-			if (balise.estPleine()) {
-				if (balise.getHautDroit().getY() > super.getMinY() + 9 ) {
-					balise.getMoveStrategy().move(balise, getMaxX(), getMinX(), getMaxY(), getMinY());
-				} else {
-					super.addBaliseToBalisesPleine(balise);
-				}
-			} else {
+			if (!balise.estPleine()) {
 				balise.getMoveStrategy().move(balise, getMaxX(), getMinX(), getMaxY(), getMinY());
+				balise.stockerDonnee();
+			} else if (balise.getHautDroit().y > this.getMinY() + 9) {
+				balise.getMoveStrategy().move(balise, getMaxX(), getMinX(), getMaxY(), getMinY());
+			} else {
+				super.addBaliseToBalisesPleines(balise);
 			}
-			balise.stockerDonnee();
 		}
 	}
 

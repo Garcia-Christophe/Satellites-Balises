@@ -1,10 +1,12 @@
-package back.eventHandler;
+package back;
 
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+
+import back.event.AbstractEvent;
 
 public class EventHandler {
 

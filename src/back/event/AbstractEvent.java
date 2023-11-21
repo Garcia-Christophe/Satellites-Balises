@@ -1,4 +1,4 @@
-package back.eventHandler;
+package back.event;
 
 import java.util.EventObject;
 

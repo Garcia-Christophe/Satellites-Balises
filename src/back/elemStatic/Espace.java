@@ -1,15 +1,15 @@
 package back.elemStatic;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import back.elemMobile.Balise;
 
 public abstract class Espace {
-	
+
 	private int maxX, minX, maxY, minY;
-	
-	private static List<Balise> balisesPleine = new ArrayList<>();
+
+	private static Set<Balise> balisesPleines = new HashSet<>();
 
 	public Espace(int maxX, int minX, int maxY, int minY) {
 		this.maxX = maxX;
@@ -50,21 +50,17 @@ public abstract class Espace {
 		this.minY = minY;
 	}
 
-	public List<Balise> getBalisesPleine() {
-		return Espace.balisesPleine;
+	public static Set<Balise> getBalisesPleines() {
+		return Espace.balisesPleines;
 	}
 
-	public void setBalisesPleine(List<Balise> balisesPleine) {
-		Espace.balisesPleine = balisesPleine;
+	public static boolean addBaliseToBalisesPleines(Balise balise) {
+		return Espace.balisesPleines.add(balise);
 	}
-	
-	public boolean addBaliseToBalisesPleine(Balise balise) {
-		return Espace.balisesPleine.add(balise);
+
+	public static boolean removeBaliseFromBalisesPleines(Balise balise) {
+		return Espace.balisesPleines.remove(balise);
 	}
-	
-	public boolean removeBaliseToBalisesPleine(Balise balise) {
-		return Espace.balisesPleine.remove(balise);
-	}
-	
+
 	public abstract void move();
 }

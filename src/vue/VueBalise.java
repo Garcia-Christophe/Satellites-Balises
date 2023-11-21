@@ -24,10 +24,18 @@ public class VueBalise extends VueElementMobile {
 
 	@Override
 	public void redessine() {
+
 		try {
 			int x = (int) (this.balise.getHautDroit().getX() - (this.getImage().getWidth(null) / 2));
 			int y = (int) (this.balise.getBasGauche().getY() - (this.getImage().getHeight(null) / 2));
 			this.setCenter(new Point(x, y));
+
+			if (balise.estEnSynchro()) {
+//				NiRectangle rectangle = new NiRectangle();
+//				rectangle.setBounds(x, y, x + 100, y + 100);
+//				rectangle.setBackground(Color.green);
+//				this.add(rectangle);
+			}
 		} catch (Exception e) {
 		}
 	}
