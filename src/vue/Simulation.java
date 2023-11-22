@@ -7,19 +7,13 @@ import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 import javax.swing.Timer;
 
+import back.ContexteDeSimulation;
 import back.elemMobile.Balise;
-import back.elemMobile.MoveStrategyHorizontal;
-import back.elemMobile.MoveStrategySinusoidale;
-import back.elemMobile.MoveStrategyVertical;
 import back.elemMobile.Satellite;
-import back.elemStatic.Air;
-import back.elemStatic.Eau;
 import nicellipse.component.NiRectangle;
 import nicellipse.component.NiSpace;
 
@@ -29,9 +23,7 @@ public class Simulation {
 
 	private NiRectangle vueAir, vueEau;
 
-	private Air air;
-
-	private Eau eau;
+	private ContexteDeSimulation contexteDeSimulation;
 
 	private final int WINDOW_WIDTH = 1024, WINDOW_HEIGHT = 728;
 
@@ -41,32 +33,18 @@ public class Simulation {
 	}
 
 	public Simulation() {
+		this.contexteDeSimulation = new ContexteDeSimulation(WINDOW_WIDTH, WINDOW_HEIGHT);
+
 		this.niSpace = new NiSpace("Simulation satellites balises", new Dimension(WINDOW_WIDTH, WINDOW_HEIGHT));
 		this.niSpace.setDoubleBuffered(true);
 		this.niSpace.openInWindow();
-
-		List<Satellite> listeSatellites = new ArrayList<Satellite>();
-		listeSatellites.add(new Satellite());
-		listeSatellites.add(new Satellite());
-		listeSatellites.add(new Satellite());
-		listeSatellites.add(new Satellite());
-		listeSatellites.add(new Satellite());
-		List<Balise> listeBalises = new ArrayList<Balise>();
-		listeBalises.add(new Balise(new MoveStrategyHorizontal(), 100, WINDOW_HEIGHT, WINDOW_HEIGHT / 2));
-		listeBalises.add(new Balise(new MoveStrategyHorizontal(), 100, WINDOW_HEIGHT, WINDOW_HEIGHT / 2));
-		listeBalises.add(new Balise(new MoveStrategyHorizontal(), 100, WINDOW_HEIGHT, WINDOW_HEIGHT / 2));
-		listeBalises.add(new Balise(new MoveStrategyVertical(), 100, WINDOW_HEIGHT, WINDOW_HEIGHT / 2));
-		listeBalises.add(new Balise(new MoveStrategySinusoidale(), 100, WINDOW_HEIGHT, WINDOW_HEIGHT / 2));
-		this.air = new Air(WINDOW_WIDTH, 0, WINDOW_HEIGHT / 2, 0, listeSatellites);
-		this.eau = new Eau(WINDOW_WIDTH, 0, WINDOW_HEIGHT, WINDOW_HEIGHT / 2, listeBalises);
 
 		this.nouveauxEspaces();
 	}
 
 	public void nouveauxEspaces() {
-
 		try {
-			for (Satellite satellite : this.air.getSatellites()) {
+			for (Satellite satellite : this.contexteDeSimulation.getSatellites()) {
 				VueSatellite vueSatellite = new VueSatellite(satellite);
 				int randX = new Random().nextInt(900 - 100) + 100;
 				int randY = new Random().nextInt(180 - 40) + 10;
@@ -76,7 +54,7 @@ public class Simulation {
 				this.niSpace.add(vueSatellite);
 			}
 
-			for (Balise balise : this.eau.getBalises()) {
+			for (Balise balise : this.contexteDeSimulation.getBalises()) {
 				VueBalise vueBalise = new VueBalise(balise);
 				int randX = new Random().nextInt(900 - 100) + 100;
 				int randY = new Random().nextInt(300 - 40) + 10 + WINDOW_HEIGHT / 2;
@@ -89,7 +67,7 @@ public class Simulation {
 			e.printStackTrace();
 		}
 
-		// Séparation de l'air et de l'eau
+		// Séparation des vues de l'air et de l'eau
 		vueAir = new NiRectangle();
 		vueAir.setBounds(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT / 2);
 		vueAir.setBackground(Color.white);
@@ -113,8 +91,7 @@ public class Simulation {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// Étape de simulation
-			Simulation.this.air.move();
-			Simulation.this.eau.move();
+			Simulation.this.contexteDeSimulation.move();
 
 			// Met à jour toutes les vues éléments
 			for (Component vueMobile : Simulation.this.niSpace.getComponents()) {
