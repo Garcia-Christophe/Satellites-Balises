@@ -7,9 +7,9 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import back.elemMobile.Balise;
+import back.mobileElement.Beacon;
 
-public class VueBalise extends VueElementMobile {
+public class ViewBeacon extends ViewMobileElement {
 
 	/**
 	 * ID de la version de série générée.
@@ -18,39 +18,39 @@ public class VueBalise extends VueElementMobile {
 	private static String pathBalise = "./assets/balise.png";
 	private static String pathBaliseEnSynchro = "./assets/baliseEnSynchro.png";
 
-	private Balise balise;
-	private boolean etaitSynchro;
+	private Beacon beacon;
+	private boolean wasSynchro;
 
-	public VueBalise(Balise bal) throws IOException {
+	public ViewBeacon(Beacon bal) throws IOException {
 		super(new File("./assets/balise.png"));
 
-		this.balise = bal;
-		this.redessine();
+		this.beacon = bal;
+		this.redraw();
 	}
 
 	@Override
-	public void redessine() {
+	public void redraw() {
 		try {
-			int x = (int) (this.balise.getHautDroit().getX() - (this.getImage().getWidth(null) / 2));
-			int y = (int) (this.balise.getBasGauche().getY() - (this.getImage().getHeight(null) / 2));
+			int x = (int) (this.beacon.getTopRight().getX() - (this.getImage().getWidth(null) / 2));
+			int y = (int) (this.beacon.getBottomLeft().getY() - (this.getImage().getHeight(null) / 2));
 			this.setCenter(new Point(x, y));
 			
-			if(balise.estEnSynchro()) {
-				if(!etaitSynchro) {
+			if(beacon.isInSynchro()) {
+				if(!wasSynchro) {
 					changeImage(pathBaliseEnSynchro);
-					etaitSynchro=true;
+					wasSynchro=true;
 				}
-			}else if(etaitSynchro){
+			}else if(wasSynchro){
 				changeImage(pathBalise);
-				etaitSynchro=false;
+				wasSynchro=false;
 			}
 		} catch (Exception e) {
 		}
 	}
 	
 
-	public Balise getBalise() {
-		return balise;
+	public Beacon getBeacon() {
+		return beacon;
 	}
 
 }

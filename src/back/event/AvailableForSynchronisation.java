@@ -1,18 +1,18 @@
 package back.event;
 
-import back.elemMobile.ElementMobile;
+import back.mobileElement.MobileElement;
 
-public class DisponiblePourSynchronisation extends AbstractEvent {
+public class AvailableForSynchronisation extends AbstractEvent {
 
 	private static final long serialVersionUID = -2325060188548024695L;
 
-	public DisponiblePourSynchronisation(ElementMobile source) {
+	public AvailableForSynchronisation(MobileElement source) {
 		super(source);
 	}
 
 	@Override
 	public void sendTo(Object target) {
-		((ElementMobile) target).receive(this);
+		((MobileElement) target).receive(this);
 	}
 
 	@Override
