@@ -1,17 +1,17 @@
-package back.elemStatic;
+package back.staticElement;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import back.elemMobile.Balise;
+import back.mobileElement.Beacon;
 
-public abstract class Espace {
+public abstract class Space {
 
 	private int maxX, minX, maxY, minY;
 
-	private static Set<Balise> balisesPleines = new HashSet<>();
+	private static Set<Beacon> fullBeacons = new HashSet<>();
 
-	public Espace(int maxX, int minX, int maxY, int minY) {
+	public Space(int maxX, int minX, int maxY, int minY) {
 		this.maxX = maxX;
 		this.minX = minX;
 		this.maxY = maxY;
@@ -50,16 +50,16 @@ public abstract class Espace {
 		this.minY = minY;
 	}
 
-	public static Set<Balise> getBalisesPleines() {
-		return Espace.balisesPleines;
+	public static Set<Beacon> getfullBeacons() {
+		return Space.fullBeacons;
 	}
 
-	public static boolean addBaliseToBalisesPleines(Balise balise) {
-		return Espace.balisesPleines.add(balise);
+	public static boolean addBeaconToFullBeacons(Beacon beacon) {
+		return Space.fullBeacons.add(beacon);
 	}
 
-	public static boolean removeBaliseFromBalisesPleines(Balise balise) {
-		return Espace.balisesPleines.remove(balise);
+	public static boolean removeBeaconFromFullBeacons(Beacon beacon) {
+		return Space.fullBeacons.remove(beacon);
 	}
 
 	public abstract void move();

@@ -8,19 +8,19 @@ import javax.imageio.ImageIO;
 
 import nicellipse.component.NiImage;
 
-public abstract class VueElementMobile extends NiImage {
+public abstract class ViewMobileElement extends NiImage {
 
 	/**
 	 * ID de la version de série générée.
 	 */
 	private static final long serialVersionUID = 8314462284805791832L;
 
-	public VueElementMobile(File path) throws IOException {
+	public ViewMobileElement(File path) throws IOException {
 		super(path);
 	}
 
-	public void mettreAJourVue() {
-		this.redessine();
+	public void updateView() {
+		this.redraw();
 	}
 	
 	public void changeImage(String path) {
@@ -34,6 +34,6 @@ public abstract class VueElementMobile extends NiImage {
 	}
 
 
-	public abstract void redessine();
+	public abstract void redraw();
 
 }

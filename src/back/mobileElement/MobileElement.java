@@ -1,24 +1,25 @@
-package back.elemMobile;
+package back.mobileElement;
 
 import java.awt.Point;
 
 import back.EventHandler;
 import back.event.AbstractEvent;
+import back.movement.MoveStrategy;
 
-public abstract class ElementMobile {
+public abstract class MobileElement {
 
-	protected final int tempsAttenteSynchro = 5;
+	protected final int waitingTimeSynchro = 5;
 
-	protected Point hautDroit, basGauche;
+	protected Point topRight, bottomLeft;
 
 	protected MoveStrategy moveStrategy;
 
 	private EventHandler eventHandler;
 
-	public ElementMobile(MoveStrategy moveStrategy) {
+	public MobileElement(MoveStrategy moveStrategy) {
 		super();
-		this.hautDroit = new Point(0, 0);
-		this.basGauche = new Point(0, 0);
+		this.topRight = new Point(0, 0);
+		this.bottomLeft = new Point(0, 0);
 		this.moveStrategy = moveStrategy;
 		this.eventHandler = new EventHandler();
 	}
@@ -27,20 +28,20 @@ public abstract class ElementMobile {
 		return eventHandler;
 	}
 
-	public Point getHautDroit() {
-		return hautDroit;
+	public Point getTopRight() {
+		return topRight;
 	}
 
-	public void setHautDroit(Point hautDroit) {
-		this.hautDroit = hautDroit;
+	public void setTopRight(Point topRight) {
+		this.topRight = topRight;
 	}
 
-	public Point getBasGauche() {
-		return basGauche;
+	public Point getBottomLeft() {
+		return bottomLeft;
 	}
 
-	public void setBasGauche(Point basGauche) {
-		this.basGauche = basGauche;
+	public void setBottomLeft(Point bottomLeft) {
+		this.bottomLeft = bottomLeft;
 	}
 
 	public MoveStrategy getMoveStrategy() {
