@@ -80,7 +80,7 @@ public class Beacon extends MobileElement {
 		return InSynchro;
 	}
 
-	public void stockerDonnee() {
+	public void storeData() {
 		Random rand = new Random();
 		int nbdata = rand.nextInt(3) + 1;
 		this.storage += nbdata;

@@ -26,7 +26,7 @@ public class Water extends Space {
 		for (Beacon beacon : this.beacons) {
 			if (!beacon.isFull()) {
 				beacon.getMoveStrategy().move(beacon, getMaxX(), getMinX(), getMaxY(), getMinY());
-				beacon.stockerDonnee();
+				beacon.storeData();
 			} else if (beacon.getTopRight().y > this.getMinY() + 9) {
 				beacon.getMoveStrategy().move(beacon, getMaxX(), getMinX(), getMaxY(), getMinY());
 			} else {
