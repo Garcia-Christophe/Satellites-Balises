@@ -2,6 +2,7 @@ package test;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.Set;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import back.EventHandler;
 import back.elemMobile.Balise;
 import back.elemMobile.MoveStrategyHorizontal;
 import back.elemMobile.MoveStrategySatellite;
@@ -19,6 +21,9 @@ import back.elemMobile.MoveStrategyVertical;
 import back.elemMobile.Satellite;
 import back.elemStatic.Air;
 import back.elemStatic.Eau;
+import back.event.DisponiblePourSynchronisation;
+import back.event.SynchronisationEnCours;
+import back.event.SynchronisationTerminee;
 
 class testBaliseSatellite {
 	
@@ -138,13 +143,14 @@ class testBaliseSatellite {
 	
 	@Test
 	void testSynchro() {
-		// Test balise est pleine
+		// Tests balise est pleine 
 		Balise balise = this.eau.getBalises().get(0);
 		balise.setCapacite(1);
 		balise.stockerDonnee();    //VA_stockData?
 		this.eau.addBaliseToBalisesPleines(balise);
 		assertTrue(this.eau.getBalises().get(0).estPleine());
 		assertTrue(this.eau.getBalises().get(0).getMoveStrategy() instanceof MoveStrategySurface);	
+		// Test existence de la balise = balise pleine
 		boolean isExist = false;
 		Set<Balise> balisesPleines = this.eau.getBalisesPleines();
 		for (Balise balise2 : balisesPleines) {
@@ -152,6 +158,37 @@ class testBaliseSatellite {
 				isExist=true;
 		}
 		assertTrue(isExist);
-		// Test synchro
+		// Reconstition du parcours d'un event
+		// --balise.receive()
+		DisponiblePourSynchronisation disponiblePourSynchronisation = new DisponiblePourSynchronisation(balise);
+		Point position1Balise = balise.getBasGauche();
+		Point position2Balise = balise.getHautDroit();
+		List<Satellite> listeSatellites = new ArrayList<Satellite>();
+		listeSatellites = this.air.getSatellites();
+		Satellite satellite = listeSatellites.get(0);
+		satellite.setBasGauche(position1Balise);
+		satellite.setHautDroit(position2Balise);
+		assertTrue(disponiblePourSynchronisation.toString().equals("Disponible pour synchronisation") && satellite.isInRangeOf(balise)==true && !balise.estEnSynchro());
+		// ---ok, en synchro
+		balise.getEventHandler().registerListener(SynchronisationEnCours.class, satellite);
+		SynchronisationEnCours synchroEnCoursEvent = new SynchronisationEnCours(balise);
+		balise.getEventHandler().send(synchroEnCoursEvent);
+		// --satellite.receive()
+		assertTrue(synchroEnCoursEvent.toString().equals("Synchronisation en cours"));
+		//---ok, en synchro
+		satellite.getEventHandler().registerListener(SynchronisationTerminee.class, balise);
+		SynchronisationTerminee synchronisationTerminee = new SynchronisationTerminee(balise);
+		balise.getEventHandler().unregisterListener(SynchronisationEnCours.class, this);
+		// --balise.receive()
+		assertTrue(synchronisationTerminee.toString().equals("Synchronisation terminée"));
+		this.eau.removeBaliseFromBalisesPleines(balise);
+		// Test existence = balise non pleines
+		balisesPleines = this.eau.getBalisesPleines();
+		isExist = false;
+		for (Balise balise2 : balisesPleines) {
+			if(balise2.equals(balise))
+				isExist=true;
+		}
+		assertTrue(!isExist); 
 	}
 }
