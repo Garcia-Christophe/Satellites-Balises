@@ -3,6 +3,9 @@ package view;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.security.CodeSource;
+import java.security.ProtectionDomain;
+import java.util.function.Function;
 
 import javax.imageio.ImageIO;
 
@@ -18,6 +21,8 @@ public abstract class ViewMobileElement extends NiImage {
 	 * ID de la version de série générée.
 	 */
 	private static final long serialVersionUID = 8314462284805791832L;
+	
+	protected static String jarPath;
 
 	/**
 	 * Crée la vue d'un élément mobile.
@@ -27,6 +32,17 @@ public abstract class ViewMobileElement extends NiImage {
 	 */
 	public ViewMobileElement(File path) throws IOException {
 		super(path);
+		ProtectionDomain protectionDomain = Simulation.class.getProtectionDomain();
+        CodeSource codeSource = protectionDomain.getCodeSource();
+
+        if (codeSource != null) {
+            java.net.URL jarUrl = codeSource.getLocation();
+            jarPath = jarUrl.getPath();
+            System.out.println(path.getAbsolutePath());
+            System.out.println("Chemin absolu de l'application : " + jarPath);
+        } else {
+            System.out.println("Impossible de r�cup�rer le chemin absolu de l'application.");
+        }
 	}
 
 	/**

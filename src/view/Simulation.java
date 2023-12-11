@@ -7,6 +7,8 @@ import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.security.CodeSource;
+import java.security.ProtectionDomain;
 import java.util.Random;
 
 import javax.swing.Timer;
@@ -68,7 +70,7 @@ public class Simulation {
 		// Crée le contenu de la simulation
 		this.niewSpaces();
 	}
-
+ 
 	/**
 	 * Crée le contenu de la simulation.
 	 */

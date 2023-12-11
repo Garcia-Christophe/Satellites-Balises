@@ -3,6 +3,7 @@ package view;
 import java.awt.Point;
 import java.io.File;
 import java.io.IOException;
+import java.util.function.Supplier;
 
 import back.mobileElement.Satellite;
 
@@ -19,13 +20,13 @@ public class ViewSatellite extends ViewMobileElement {
 	/**
 	 * Chemin de l'image représentant un satellite, qu'importe la balise.
 	 */
-	private static String satellitePath = "./src/assets/satellite.png";
+	private static String satellitePath = "assets/satellite.png";
 
 	/**
 	 * Chemin de l'image représentant un satellite en synchronisation, qu'importe le
 	 * satellite.
 	 */
-	private static String synchronizingSatellitePath = "./src/assets/satelliteEnSynchro.png";
+	private static String synchronizingSatellitePath = "assets/satelliteEnSynchro.png";
 
 	/**
 	 * Le satellite représenté.
@@ -37,6 +38,7 @@ public class ViewSatellite extends ViewMobileElement {
 	 * synchronisation, false sinon.
 	 */
 	private boolean wasSynchro;
+	
 
 	/**
 	 * Crée une représentation d'un satellite.
@@ -46,6 +48,7 @@ public class ViewSatellite extends ViewMobileElement {
 	 */
 	public ViewSatellite(Satellite satellite) throws IOException {
 		super(new File(satellitePath));
+		System.out.println(satellitePath);
 
 		this.satellite = satellite;
 		this.redraw();

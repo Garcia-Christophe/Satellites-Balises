@@ -19,13 +19,13 @@ public class ViewBeacon extends ViewMobileElement {
 	/**
 	 * Chemin de l'image représentant une balise, qu'importe la balise.
 	 */
-	private static String beaconPath = "./src/assets/balise.png";
+	private static String beaconPath = "assets/balise.png";
 
 	/**
 	 * Chemin de l'image représentant une balise en synchronisation, qu'importe la
 	 * balise.
 	 */
-	private static String synchronizingBeaconPath = "./src/assets/baliseEnSynchro.png";
+	private static String synchronizingBeaconPath = "assets/baliseEnSynchro.png";
 
 	/**
 	 * La balise représentée.
@@ -45,7 +45,7 @@ public class ViewBeacon extends ViewMobileElement {
 	 * @throws IOException - Lorsqu'il n'est pas possible d'associer l'image
 	 */
 	public ViewBeacon(Beacon beacon) throws IOException {
-		super(new File("./src/assets/balise.png"));
+		super(new File(beaconPath));
 
 		this.beacon = beacon;
 		this.redraw();
