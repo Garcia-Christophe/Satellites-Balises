@@ -1,16 +1,20 @@
 # Satellites Balises
 
+Sujet du cours de l'UE Conception du Master 2 TIIL-A. \
+Travail en équipe de 5. \
+Conception et développement logiciels.
+
 ## Sommaire
 
 1. [Sujet](#sujet) \
-    1.1 [Présentation du scénario](#presentation-du-scenario) \
-    1.2 [Les éléments mobiles](#les-elements-mobiles) \
-    1.3 [Étape de collecte](#etape-de-collecte) \
-    1.4 [Étape de synchronisation](#etape-de-synchronisation) \
+    1.1 [Présentation du scénario](#présentation-du-scénario) \
+    1.2 [Les éléments mobiles](#les-éléments-mobiles) \
+    1.3 [Étape de collecte](#étape-de-collecte) \
+    1.4 [Étape de synchronisation](#étape-de-synchronisation) \
     1.5 [Plan de travail](#plan-de-travail)
-1. [Équipe](#equipe)
-1. [Technologies utilisées](#technologies-utilisees)
-1. [Installation & Lancement](#installation-&-lancement)
+1. [Équipe](#équipe)
+1. [Technologies utilisées](#technologies-utilisées)
+1. [Installation & Lancement](#installation-lancement)
 
 ## Sujet
 
