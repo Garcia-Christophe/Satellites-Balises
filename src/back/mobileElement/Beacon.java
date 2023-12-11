@@ -116,50 +116,110 @@ public class Beacon extends MobileElement {
 		}
 	}
 
+	/**
+	 * Récupère la capacité de la balise.
+	 * 
+	 * @return la capacité de la balise
+	 */
 	public int getCapacity() {
 		return capacity;
 	}
 
+	/**
+	 * Définit la capacité de la balise.
+	 * 
+	 * @param capacity - La nouvelle capacité de la balise
+	 */
 	public void setCapacity(int capacity) {
 		this.capacity = capacity;
 	}
 
+	/**
+	 * Récupère la quantitié stockable par la balise.
+	 * 
+	 * @return la quantité stockable par la balise
+	 */
 	public int getStorage() {
 		return storage;
 	}
 
+	/**
+	 * Définit la quantité stockable par la balise.
+	 * 
+	 * @param storage - La nouvelle quantité stockable par la balise
+	 */
 	public void setStorage(int storage) {
 		this.storage = storage;
 	}
 
+	/**
+	 * Récupère l'état de stockage de la balise.
+	 * 
+	 * @return true si la balise est pleine de données, false sinon
+	 */
 	public boolean isFull() {
 		return isFull;
 	}
 
+	/**
+	 * Définit l'état de stockage de la balise.
+	 * 
+	 * @param isFull - True si la balise est pleine de données, false sinon
+	 */
 	public void setIsFull(boolean isFull) {
 		this.isFull = isFull;
 	}
 
+	/**
+	 * Définit la profondeur par défaut de la balise.
+	 * 
+	 * @param defaultDepth - la profondeur par défaut de la balise
+	 */
 	public void setDefaultDepth(int defaultDepth) {
 		this.defaultDepth = defaultDepth;
 	}
 
+	/**
+	 * Récupère la profondeur actuelle de la balise.
+	 * 
+	 * @return la profondeur actuelle de la balise
+	 */
 	public int getCurrentDepth() {
 		return currentDepth;
 	}
 
+	/**
+	 * Définit la profondeur actuelle de la balise.
+	 * 
+	 * @param indexDescente - La nouvelle profondeur actuelle de la balise
+	 */
 	public void setCurrentDepth(int indexDescente) {
 		this.currentDepth = indexDescente;
 	}
 
+	/**
+	 * Récupère la stratégie de déplacement par défaut de la balise.
+	 * 
+	 * @return la stratégie de déplacement par défaut de la balise
+	 */
 	public MoveStrategy getDefaultStrategy() {
 		return defaultStrategy;
 	}
 
+	/**
+	 * Récupère la zone de synchronisation de la balise.
+	 * 
+	 * @return la zone de synchronisation de la balise
+	 */
 	public int getRangeSynchro() {
 		return this.RANGE_SYNCHRO;
 	}
 
+	/**
+	 * Récupère l'état de la balise.
+	 * 
+	 * @return true si la balise est en cours de synchronisation, false sinon
+	 */
 	public boolean isInSynchro() {
 		return InSynchro;
 	}

@@ -41,38 +41,83 @@ public abstract class Space {
 	 */
 	public abstract void move();
 
+	/**
+	 * Récupère la coordonnée maximale sur l'axe X.
+	 * 
+	 * @return - la coordonnée maximale sur l'axe X
+	 */
 	public int getMaxX() {
 		return maxX;
 	}
 
+	/**
+	 * Définit la coordonnée maximale sur l'axe X.
+	 * 
+	 * @param maxX - La coordonnée maximale sur l'axe X
+	 */
 	public void setMaxX(int maxX) {
 		this.maxX = maxX;
 	}
 
+	/**
+	 * Récupère la coordonnée minimale sur l'axe X.
+	 * 
+	 * @return - la coordonnée minimale sur l'axe X
+	 */
 	public int getMinX() {
 		return minX;
 	}
 
+	/**
+	 * Définit la coordonnée minimale sur l'axe X.
+	 * 
+	 * @param minX - La coordonnée minimale sur l'axe X
+	 */
 	public void setMinX(int minX) {
 		this.minX = minX;
 	}
 
+	/**
+	 * Récupère la coordonnée maximale sur l'axe Y.
+	 * 
+	 * @return - la coordonnée maximale sur l'axe Y
+	 */
 	public int getMaxY() {
 		return maxY;
 	}
 
+	/**
+	 * Définit la coordonnée maximale sur l'axe Y.
+	 * 
+	 * @param maxY - La coordonnée maximale sur l'axe Y
+	 */
 	public void setMaxY(int maxY) {
 		this.maxY = maxY;
 	}
 
+	/**
+	 * Récupère la coordonnée minimale sur l'axe Y.
+	 * 
+	 * @return - la coordonnée minimale sur l'axe Y
+	 */
 	public int getMinY() {
 		return minY;
 	}
 
+	/**
+	 * Définit la coordonnée minimale sur l'axe Y.
+	 * 
+	 * @param minY - La coordonnée minimale sur l'axe Y
+	 */
 	public void setMinY(int minY) {
 		this.minY = minY;
 	}
 
+	/**
+	 * Récupère la liste de balises prêtes à la synchronisation.
+	 * 
+	 * @return - la liste des balises prêtes à la synchronisation
+	 */
 	public static Set<Beacon> getfullBeacons() {
 		return Space.fullBeacons;
 	}

@@ -1,0 +1,7 @@
+module:SatellitesBalises
+back
+back.event
+back.mobileElement
+back.movement
+back.staticElement
+view

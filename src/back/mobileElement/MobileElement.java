@@ -47,30 +47,65 @@ public abstract class MobileElement {
 	 */
 	public abstract void receive(AbstractEvent event);
 
+	/**
+	 * Récupère le gestionnaire d'évènements.
+	 * 
+	 * @return le gestionnaire d'évènements
+	 */
 	public EventHandler getEventHandler() {
 		return eventHandler;
 	}
 
+	/**
+	 * Récupère les coordonnées haut-droite de l'élément.
+	 * 
+	 * @return les coordonnées haut-droite de l'élément
+	 */
 	public Point getTopRight() {
 		return topRight;
 	}
 
+	/**
+	 * Définit les coordonnées haut-droite de l'élément.
+	 * 
+	 * @param topRight - Les nouvelles coordonnées haut-droite de l'élément
+	 */
 	public void setTopRight(Point topRight) {
 		this.topRight = topRight;
 	}
 
+	/**
+	 * Récupère les coordonnées bas-gauche de l'élément.
+	 * 
+	 * @return les coordonnées bas-gauche de l'élément
+	 */
 	public Point getBottomLeft() {
 		return bottomLeft;
 	}
 
+	/**
+	 * Définit les coordonnées bas-gauche de l'élément.
+	 * 
+	 * @param bottomLeft - Les nouvelles coordonnées bas-gauche de l'élément
+	 */
 	public void setBottomLeft(Point bottomLeft) {
 		this.bottomLeft = bottomLeft;
 	}
 
+	/**
+	 * Récupère la stratégie actuelle de déplacement.
+	 * 
+	 * @return la stratégie actuelle de déplacement
+	 */
 	public MoveStrategy getMoveStrategy() {
 		return moveStrategy;
 	}
 
+	/**
+	 * Définit la stratégie actuelle de déplacement.
+	 * 
+	 * @param moveStrategy - la nouvelle stratégie actuelle de déplacement.
+	 */
 	public void setMoveStrategy(MoveStrategy moveStrategy) {
 		this.moveStrategy = moveStrategy;
 	}

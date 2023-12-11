@@ -82,10 +82,20 @@ public class Satellite extends MobileElement {
 		inSynchro = false;
 	}
 
+	/**
+	 * Récupère l'état du satellite.
+	 * 
+	 * @return true si le satellite est en cours de synchronisation, false sinon
+	 */
 	public boolean isInSynchronisation() {
 		return inSynchro;
 	}
 
+	/**
+	 * Récupère la liste de balises prêtes à la synchronisation.
+	 * 
+	 * @return la liste de balises prêtes à la synchronisation
+	 */
 	public Set<Beacon> getBeaconsInSynchro() {
 		return beaconsInSynchro;
 	}

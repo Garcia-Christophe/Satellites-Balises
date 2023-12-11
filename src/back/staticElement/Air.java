@@ -82,10 +82,20 @@ public class Air extends Space {
 		}
 	}
 
+	/**
+	 * Récupère la liste de satellites.
+	 * 
+	 * @return la liste de satellites
+	 */
 	public List<Satellite> getSatellites() {
 		return satellites;
 	}
 
+	/**
+	 * Définit la liste de satellites.
+	 * 
+	 * @param satellites - La nouvelle liste de satellites
+	 */
 	public void setSatellites(List<Satellite> satellites) {
 		this.satellites = satellites;
 	}

@@ -47,10 +47,20 @@ public class Water extends Space {
 		}
 	}
 
+	/**
+	 * Récupère la liste des balises.
+	 * 
+	 * @return les balises
+	 */
 	public List<Beacon> getBeacons() {
 		return beacons;
 	}
 
+	/**
+	 * Définit la liste des balises.
+	 * 
+	 * @param beacons - La nouvelle liste de balises
+	 */
 	public void setBeacons(List<Beacon> beacons) {
 		this.beacons = beacons;
 	}

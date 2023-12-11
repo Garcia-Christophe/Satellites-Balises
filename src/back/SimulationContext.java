@@ -59,14 +59,27 @@ public class SimulationContext {
 		this.water = new Water(windowWidth, 0, windowHeight, windowHeight / 2, beaconsList);
 	}
 
+	/**
+	 * Récupère la liste de satellites.
+	 * 
+	 * @return les satellites
+	 */
 	public List<Satellite> getSatellites() {
 		return this.air.getSatellites();
 	}
 
+	/**
+	 * Récupère la liste de balises.
+	 * 
+	 * @return les balises
+	 */
 	public List<Beacon> getBeacons() {
 		return this.water.getBeacons();
 	}
 
+	/**
+	 * Lance une étape de simulation.
+	 */
 	public void move() {
 		this.air.move();
 		this.water.move();
