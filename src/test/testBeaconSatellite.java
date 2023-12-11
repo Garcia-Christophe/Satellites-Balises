@@ -151,7 +151,7 @@ public class testBeaconSatellite {
 		assertTrue(this.water.getBeacons().get(0).isFull());
 		assertTrue(this.water.getBeacons().get(0).getMoveStrategy() instanceof MoveStrategySurface);	
 		// Test existence de la balise = balise pleine
-		Set<Beacon> fullBeacons = this.water.getfullBeacons();
+		Set<Beacon> fullBeacons = Space.getfullBeacons();
 		assertTrue(fullBeacons.contains(beacon));
 		// Reconstition du parcours d'un event
 		// --balise.receive()

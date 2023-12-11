@@ -3,7 +3,6 @@ package view;
 import java.awt.Point;
 import java.io.File;
 import java.io.IOException;
-import java.util.function.Supplier;
 
 import back.mobileElement.Satellite;
 
@@ -48,7 +47,6 @@ public class ViewSatellite extends ViewMobileElement {
 	 */
 	public ViewSatellite(Satellite satellite) throws IOException {
 		super(new File(satellitePath));
-		System.out.println(satellitePath);
 
 		this.satellite = satellite;
 		this.redraw();
