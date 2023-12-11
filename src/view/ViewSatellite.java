@@ -19,13 +19,13 @@ public class ViewSatellite extends ViewMobileElement {
 	/**
 	 * Chemin de l'image représentant un satellite, qu'importe la balise.
 	 */
-	private static String satellitePath = "./assets/satellite.png";
+	private static String satellitePath = "./src/assets/satellite.png";
 
 	/**
 	 * Chemin de l'image représentant un satellite en synchronisation, qu'importe le
 	 * satellite.
 	 */
-	private static String synchronizingSatellitePath = "./assets/satelliteEnSynchro.png";
+	private static String synchronizingSatellitePath = "./src/assets/satelliteEnSynchro.png";
 
 	/**
 	 * Le satellite représenté.
