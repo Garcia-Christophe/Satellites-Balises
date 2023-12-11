@@ -1,92 +1,79 @@
 # Satellites Balises
 
+## Sommaire
 
+1. [Sujet](#sujet) \
+    1.1 [Présentation du scénario](#presentation-du-scenario) \
+    1.2 [Les éléments mobiles](#les-elements-mobiles) \
+    1.3 [Étape de collecte](#etape-de-collecte) \
+    1.4 [Étape de synchronisation](#etape-de-synchronisation) \
+    1.5 [Plan de travail](#plan-de-travail)
+1. [Équipe](#equipe)
+1. [Technologies utilisées](#technologies-utilisees)
+1. [Installation & Lancement](#installation-&-lancement)
 
-## Getting started
+## Sujet
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+### Présentation du scénario
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+Une entreprise spécialisée dans l’étude des océans organise des campagnes de mesure de caractéristiques physiques comme la température, les courants, la luminosité et la composition du milieu marin. Pour cela, un ensemble de balises autonomes sont larguées dans les zones à étudier. \
+Une fois lancée, une balise effectue le cycle suivant :
+- Etape d’enregistrement : la balise plonge et se déplace dans l’eau ; elle effectue des mesures
+et les enregistre ;
+- Etape de remontée et de synchronisation : la balise remonte en surface et se place en attente
+de synchronisation avec un satellite ;
 
-## Add your files
+### Les éléments mobiles
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+La simulation met en œuvre des éléments mobiles : des balises et des satellites. \
+Les satellites se déplacent autour de la terre, toujours dans le même sens. Leur vitesse de déplacement est variable et certains peuvent être géostationnaires. \
+Les balises se déplacent dans le milieu. Le déplacement est variable. Dans un premier temps, sa nature est décidée lors de la programmation de la balise à terre. Par exemple, comme le montre la figure ci-dessous, un déplacement peut être horizontal, vertical ou bien sinusoïdal. La balise peut aussi rester immobile à une certaine profondeur.
 
-```
-cd existing_repo
-git remote add origin https://gitlab.com/G.Christophe/satellites-balises.git
-git branch -M main
-git push -uf origin main
-```
+![Exemple de déplacement des éléments mobiles](image.png)
 
-## Integrate with your tools
+### Étape de collecte
 
-- [ ] [Set up project integrations](https://gitlab.com/G.Christophe/satellites-balises/-/settings/integrations)
+Le rôle d’une balise est de collecter des données dans le milieu marin. L’étape de collecte consiste pour la balise à enregistrer des données et les stocker dans sa mémoire. Lorsque sa mémoire est pleine, elle entame une procédure d’émission de ses données vers un satellite pour pouvoir reprendre la collecte.
 
-## Collaborate with your team
+### Étape de synchronisation
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+Pour vider sa mémoire, une balise remonte à la surface. Elle attend le passage d’un satellite disponible avec lequel elle est en mesure de se synchroniser. Etre en mesure de se synchroniser signifie que le satellite est disponible et qu’il se situe au dessus de la balise comme le montre la figure ci-dessous.
 
-## Test and Deploy
+Lorsque la balise et un satellite sont synchronisés, la balise envoie les données au satellite. Quand toutes les données sont transférées, la balise repasse à l’étape de collecte.
 
-Use the built-in continuous integration in GitLab.
+### Plan de travail
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+Il est demandé de programmer une simulation avec une visualisation graphique. Au cours d'une simulation, un ensemble de satellites et de balises sont visibles et se caractérisent par des stratégies
+de déplacement différentes.
 
-***
+La simulation doit mettre en évidence la synchronisation entre une balise et un satellite. Par exemple, par une ligne reliant le satellite à la balise ou par un changement de couleur des vues. Pour cette simulation, les patrons Stratégie et Observable/Observateur doivent être utilisé pour respectivement :
+- la mise en œuvre du déplacement des balises
+- la synchronisation entre une balise et un satellite.
 
-# Editing this README
+## Équipe 
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
+L'équipe est composée de 5 étudiants de Master 2 TIIL-A : 
+- [Alexia Sorin](https://gitlab.com/asorin.alexia)
+- [Marie Le Buhan](https://gitlab.com/marie.lebuhan)
+- [Jonathan Bayle](https://gitlab.com/Sifey)
+- [Louis Dosnon](https://gitlab.com/louisdosnon)
+- [Christophe Garcia](https://gitlab.com/G.Christophe)
 
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+Le professeur est Alain Plantec.
 
-## Name
-Choose a self-explaining name for your project.
+## Technologies utilisées
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+| Technologie | Utilité | 
+|-----------|-----------|
+| Java | Développement |
+| JUnit | Test unitaires |
+| Swing | Interface graphique |
+| Nicellipse | Librairie pour Interface graphique |
+| Gitlab | Gestion des versions |
+| Suite Google | Documents |
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+## Installation & Lancement
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+**Installation** : clonez le projet et importez le sur votre IDE favori.
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
-
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
-
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
-
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+**Exécution** : téléchargez le zip puis lancez le jar.
