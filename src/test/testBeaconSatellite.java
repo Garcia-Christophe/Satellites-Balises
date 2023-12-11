@@ -1,8 +1,6 @@
 package test;
 
 import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.*;
-
 
 import java.awt.Point;
 import java.util.ArrayList;
@@ -42,6 +40,7 @@ public class testBeaconSatellite {
 		Water water = new Water(windowWidth, 0, windowHeight, windowHeight / 2, listBeacons);
 		assertTrue(water.getBeacons().size() == 0 );
 	}
+	
 	
 	@Test
 	void testIsExistAdd() {
@@ -152,7 +151,6 @@ public class testBeaconSatellite {
 		assertTrue(this.water.getBeacons().get(0).isFull());
 		assertTrue(this.water.getBeacons().get(0).getMoveStrategy() instanceof MoveStrategySurface);	
 		// Test existence de la balise = balise pleine
-		boolean isExist = false;
 		Set<Beacon> fullBeacons = this.water.getfullBeacons();
 		assertTrue(fullBeacons.contains(beacon));
 		// Reconstition du parcours d'un event
